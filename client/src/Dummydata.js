@@ -1,0 +1,405 @@
+export const products = [
+    {
+      name: 'Nike Air-Force x2 mens',
+      description: "Experience ultimate comfort and casual style with our men's sneakers. Ideal for everyday adventures, these shoes provide a perfect blend of durability and modern aesthetics. Whether you're hitting the gym or the streets, our sneakers ensure you stay on top of your game.",
+      price: 11.99,
+      category: 'Mens',
+      subCategory: 'Shoes',
+      isSale: false,
+      featured: true,
+      storeName: 'Store 1',
+      stock: 100,
+      ratings: 4.5,
+      numReviews: 10,
+      reviews: [
+        {
+          user: '60b8d295d4f7857d8c7a1c7a', // Example user ID
+          name: 'User 1',
+          rating: 4,
+          comment: 'Great product!',
+        },
+      ],
+      images: [
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+      ],
+      quantity:1,
+      location:'hyderabad',
+      brand:"farero",
+      sellerId: '60b8d295d4f7857d8c7a1c7a', // Example seller ID
+    },
+    {
+      name: 'Nike Air-Force x3 mens',
+      description: "Experience ultimate comfort and casual style with our men's sneakers. Ideal for everyday adventures, these shoes provide a perfect blend of durability and modern aesthetics. Whether you're hitting the gym or the streets, our sneakers ensure you stay on top of your game.",
+      price: 10.99,
+      category: 'Mens',
+      subCategory: 'Shoes',
+      isSale: false,
+      featured: true,
+      storeName: 'Store 1',
+      stock: 100,
+      ratings: 4.5,
+      numReviews: 10,
+      reviews: [
+        {
+          user: '60b8d295d4f7857d8c7a1c7a', // Example user ID
+          name: 'User 1',
+          rating: 4,
+          comment: 'Great product!',
+        },
+      ],
+      images: [
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+      ],
+      quantity:1,
+      location:'karachi',
+      brand:"Nike",
+      sellerId: '60b8d295d4f7857d8c7a1c7a', // Example seller ID
+    },
+    {
+      name: 'Product 2',
+      description: 'Description for product 2',
+      price: 15.99,
+      category: 'Home',
+      subCategory: 'Kitchen',
+      isSale: true,
+      featured: false,
+      storeName: 'Store 2',
+      stock: 50,
+      ratings: 4.0,
+      numReviews: 5,
+      reviews: [
+        {
+          user: '60b8d295d4f7857d8c7a1c7a', // Example user ID
+          name: 'User 2',
+          rating: 3,
+          comment: 'Good product!',
+        },
+      ],
+       images: [
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+      ],
+      quantity:1,
+      location:'karachi',
+      brand:"Nike",
+      sellerId: '60b8d295d4f7857d8c7a1c7b', // Example seller ID
+    },
+    {
+      name: 'Home decoreation',
+      description: 'Description for product 2',
+      price: 15.99,
+      category: 'Home',
+      subCategory: 'Kitchen',
+      isSale: true,
+      featured: false,
+      storeName: 'Store 2',
+      stock: 50,
+      ratings: 4.0,
+      numReviews: 5,
+      reviews: [
+        {
+          user: '60b8d295d4f7857d8c7a1c7a', // Example user ID
+          name: 'User 2',
+          rating: 3,
+          comment: 'Good product!',
+        },
+      ],
+       images: [
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+      ],
+      quantity:1,
+      location:'karachi',
+      brand:"farero",
+      sellerId: '60b8d295d4f7857d8c7a1c7ba', // Example seller ID
+    },
+    {
+      name: 'Product 3',
+      description: 'Description for product 3',
+      price: 29.99,
+      category: 'Fashion',
+      subCategory: 'Clothing',
+      isSale: false,
+      featured: true,
+      storeName: 'Store 3',
+      stock: 200,
+      ratings: 4.8,
+      numReviews: 20,
+      reviews: [
+        {
+          user: '60b8d295d4f7857d8c7a1c7c', // Example user ID
+          name: 'User 3',
+          rating: 5,
+          comment: 'Excellent quality!',
+        },
+      ],
+       images: [
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+      ],
+      quantity:1,
+      location:'islamabad',
+      brand:"Adidas",
+      sellerId: '60b8d295d4f7857d8c7a1c7c', // Example seller ID
+    },
+    {
+      name: 'Product 4',
+      description: 'Description for product 4',
+      price: 45.00,
+      category: 'Beauty',
+      subCategory: 'Skincare',
+      isSale: true,
+      featured: false,
+      storeName: 'Store 4',
+      stock: 75,
+      ratings: 4.3,
+      numReviews: 8,
+      reviews: [
+        {
+          user: '60b8d295d4f7857d8c7a1c7d', // Example user ID
+          name: 'User 4',
+          rating: 4,
+          comment: 'Very effective!',
+        },
+      ],
+       images: [
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+      ],
+      quantity:1,
+      location:'lahore',
+      brand:"Adidas",
+      sellerId: '60b8d295d4f7857d8c7a1c7d', // Example seller ID
+    },
+    {
+      name: 'Product 5',
+      description: 'Description for product 5',
+      price: 12.50,
+      category: 'Books',
+      subCategory: 'Fiction',
+      isSale: false,
+      featured: true,
+      storeName: 'Store 5',
+      stock: 120,
+      ratings: 4.7,
+      numReviews: 15,
+      reviews: [
+        {
+          user: '60b8d295d4f7857d8c7a1c7e', // Example user ID
+          name: 'User 5',
+          rating: 5,
+          comment: 'Captivating story!',
+        },
+      ],
+       images: [
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+      ],
+      quantity:1,
+      location:'karachi',
+      brand:"Adidas",
+      sellerId: '60b8d295d4f7857d8c7a1c7e', // Example seller ID
+    },
+    {
+      name: 'Product 6',
+      description: 'Description for product 6',
+      price: 23.99,
+      category: 'Toys',
+      subCategory: 'Educational',
+      isSale: true,
+      featured: false,
+      storeName: 'Store 6',
+      stock: 85,
+      ratings: 4.2,
+      numReviews: 12,
+      reviews: [
+        {
+          user: '60b8d295d4f7857d8c7a1c7f', // Example user ID
+          name: 'User 6',
+          rating: 4,
+          comment: 'Great for kids!',
+        },
+      ],
+       images: [
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+      ],
+      quantity:1,
+      location:'karachi',
+      brand:"Nike",
+      sellerId: '60b8d295d4f7857d8c7a1c7f', // Example seller ID
+    },
+    {
+      name: 'Product 7',
+      description: 'Description for product 7',
+      price: 8.99,
+      category: 'Groceries',
+      subCategory: 'Snacks',
+      isSale: false,
+      featured: true,
+      storeName: 'Store 7',
+      stock: 300,
+      ratings: 4.5,
+      numReviews: 25,
+      reviews: [
+        {
+          user: '60b8d295d4f7857d8c7a1c80', // Example user ID
+          name: 'User 7',
+          rating: 5,
+          comment: 'Delicious!',
+        },
+      ],
+       images: [
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+      ],
+      quantity:1,
+      location:'lahore',
+      brand:"Nike",
+      sellerId: '60b8d295d4f7857d8c7a1c80', // Example seller ID
+    },
+    {
+      name: 'Product 8',
+      description: 'Description for product 8',
+      price: 75.00,
+      category: 'Sports',
+      subCategory: 'Equipment',
+      isSale: true,
+      featured: false,
+      storeName: 'Store 8',
+      stock: 45,
+      ratings: 4.1,
+      numReviews: 7,
+      reviews: [
+        {
+          user: '60b8d295d4f7857d8c7a1c81', // Example user ID
+          name: 'User 8',
+          rating: 4,
+          comment: 'High quality!',
+        },
+      ],
+       images: [
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+      ],
+      quantity:1,
+      location:'london',
+      brand:"Nike",
+      sellerId: '60b8d295d4f7857d8c7a1c81', // Example seller ID
+    },
+    {
+      name: 'Product 9',
+      description: 'Description for product 9',
+      price: 19.99,
+      category: 'Automotive',
+      subCategory: 'Accessories',
+      isSale: false,
+      featured: true,
+      storeName: 'Store 9',
+      stock: 65,
+      ratings: 4.6,
+      numReviews: 9,
+      reviews: [
+        {
+          user: '60b8d295d4f7857d8c7a1c82', // Example user ID
+          name: 'User 9',
+          rating: 5,
+          comment: 'Very useful!',
+        },
+      ],
+       images: [
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+      ],
+      quantity:1,
+      location:'hyderabad',
+      brand:"Nike",
+      sellerId: '60b8d295d4f7857d8c7a1c82', // Example seller ID
+    },
+    {
+      name: 'Product 10',
+      description: 'Description for product 10',
+      price: 89.99,
+      category: 'Health',
+      subCategory: 'Supplements',
+      isSale: true,
+      featured: false,
+      storeName: 'Store 10',
+      stock: 40,
+      ratings: 4.0,
+      numReviews: 6,
+      reviews: [
+        {
+          user: '60b8d295d4f7857d8c7a1c83', // Example user ID
+          name: 'User 10',
+          rating: 4,
+          comment: 'Works as expected!',
+        },
+      ],
+       images: [
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+      ],
+      quantity:1,
+      location:'hyderabad',
+      brand:"Nike",
+      sellerId: '60b8d295d4f7857d8c7a1c83', // Example seller ID
+    },
+    {
+      name: 'Product 11',
+      description: 'Description for product 10',
+      price: 90.99,
+      category: 'Womens',
+      subCategory: 'shoes',
+      isSale: true,
+      featured: false,
+      storeName: 'Store 10',
+      stock: 40,
+      ratings: 4.0,
+      numReviews: 6,
+      reviews: [
+        {
+          user: '60b8d295d4f7857d8c7a1c83', // Example user ID
+          name: 'User 10',
+          rating: 4,
+          comment: 'Works as expected!',
+        },
+      ],
+       images: [
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+        { url: '/images/shoes1.webp' },
+      ],
+      quantity:1,
+      location:'hyderabad',
+      brand:"Nike",
+      sellerId: '60b8d295d4f7857d8c7a1c83', // Example seller ID
+    },
+  ];

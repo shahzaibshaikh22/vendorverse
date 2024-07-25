@@ -1,0 +1,355 @@
+
+
+
+::-webkit-scrollbar{
+  width: 8px;
+}
+::-webkit-scrollbar-track{
+  background: #67eebc;
+}
+::-webkit-scrollbar-thumb{
+  background: #eaeaea;
+}
+/* navbar */
+.v-nav{
+  border-radius: 0 0 10px 10px;
+}
+/* navbar */
+
+.arrow{
+    transition: all .2s ease;
+}
+body{
+  background-color: #18191A;
+  overflow-x: hidden;
+}
+.arrow-btn{
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+}
+.navdark{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+/* input{
+  border: none;
+}
+input:focus{
+  border: none;
+  outline: 1px solid green;
+} */
+
+
+:root{
+    --bg-primary:#15191E;
+    --input-bg:#E6E6E6;
+}
+
+.main-bg{
+    background-color: var(--bg-primary);
+}
+.blur-glass{
+    position: relative;
+    overflow: hidden;
+}
+.blur-glass::before{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        /* width: 100%; */
+        height: 100%;
+        /* You can adjust the color and transparency here */
+}
+.blur-glass .gradient-box{
+    position: absolute;
+    height: 100%;
+    background-color: rgba(225, 225, 225, 0.025);
+    opacity: .2;
+}
+
+.blur-glass .gradient-box::before{
+    position: absolute;
+    content: "";
+    width: 250px;
+    height: 250px;
+    background-color: #34D399;
+    border-radius: 50%;
+    opacity: .5;
+    right: 50%;
+    top: 40%;
+    transform: translate(100%, -40%);
+    filter: blur(50px);
+    animation: rotate2 5s linear infinite;
+}
+.blur-glass .gradient-box::after{
+    position: absolute;
+    content: "";
+    width: 250px;
+    height: 250px;
+    background-color: #fe5770;
+    border-radius: 50%;
+    opacity: .5;
+    right: 50;
+    left: 50%;
+    top: 50%;
+    transform: translate(100%, -50%);
+    filter: blur(50px);
+    animation: rotate1 5s linear infinite;
+}
+
+@keyframes rotate1 {
+    0% {
+      transform: rotate(0deg) translateX(100px) rotate(0deg);
+    }
+    100% {
+      transform: rotate(-360deg) translateX(100px) rotate(-360deg);
+    }
+  }
+  @keyframes rotate2 {
+    0% {
+      transform: rotate(0deg) translateX(100px) rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg) translateX(100px) rotate(360deg);
+    }
+  }
+
+
+
+
+  .hover-button {
+    position: relative;
+    padding: 14px 32px;
+    font-size: 14px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  
+  .icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    margin-left: 50px;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+  }
+  
+  .hover-button:hover .icon {
+    transform: translateX(10px) translateY(-50%);
+  }
+  
+  .button-text {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: -10px;
+  }
+
+  .dimbg{
+    background-color: rgba(19, 19, 19, 0);
+  }
+  .uploadModalHide{
+    transform: scale(0);
+    transition: all .2s ease-in-out
+  }
+  .uploadModal{
+    transform: scale(1);
+    transition: all .2s ease-in-out
+  }
+  
+
+  /* phone menu */
+  .hidePhoneMenu{
+    transform: translateX(100%);
+  }
+  .showPhoneMenu{
+    transform: translateX(0);
+  }
+
+  /* phone menu */
+
+  .rightCon .category .mySwiper{
+    padding: 10px 20px!important;
+
+  }
+
+  .rightCon .category .mySwiper .swiper-button-prev{
+    background-color: #34D399;
+    left: 0;
+    position: absolute;
+    margin-top: 0;
+    top: 12px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .rightCon .category .mySwiper .swiper-button-prev::after{
+    font-size: 15px;
+    color: white;
+  }
+
+  .rightCon .category .mySwiper .swiper-button-next{
+    background-color: #34D399;
+    right: 0;
+    margin-top: 0;
+    top: 12px;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .rightCon .category .mySwiper .swiper-button-next::after{
+    font-size: 15px;
+    color: white;
+  }
+
+
+
+
+  
+ .banners{
+  background-image: linear-gradient(to left bottom, #3F9FFA, #76E5FC);
+ }
+
+ .img-overlay{
+  position: absolute;
+  width: 30rem;
+  height: 30rem;
+  background-color: #A7F3D0;
+  top: 50px;
+  right: 0;
+  z-index: 1;
+  border-radius: 200px 0 0 0 ;
+  /* border-radius: 51% 49% 49% 51% / 30% 29% 70% 70% ; */
+ }
+ .left-overlay{
+  width: 200px;
+  height: 200px;
+  background-color: #A7F3D0;
+  opacity: .5;
+  border-radius: 0 0 100px 100px;
+  /* transform: rotate(-45deg); */
+  position: absolute;
+  left: 50px;
+  top: 0;
+  z-index: -1;
+ }
+
+ /* foot waer swiper */
+ .footswiper .swiper-button-prev{
+  background-color: #34D399;
+  left: 0;
+  position: absolute;
+  width: 25px;
+  height: 60px;
+  border-radius: 0 5px 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footswiper .swiper-button-prev::after{
+  font-size: 15px;
+  color: white;
+}
+
+.footswiper .swiper-button-next{
+  background-color: #34D399;
+  right: 0;
+  position: absolute;
+  width: 25px;
+  height: 60px;
+  border-radius: 5px 0 0 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footswiper .swiper-button-next::after{
+  font-size: 15px;
+  color: white;
+}
+ /* foot waer swiper */
+ .rightCon .swiper-button-prev{
+  background-color: #047857;
+  left: 0;
+  position: absolute;
+  width: 25px;
+  height: 70px;
+  border-radius: 0 5px 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rightCon .swiper-button-prev::after{
+  font-size: 15px;
+  color: white;
+}
+
+.rightCon .swiper-button-next{
+  background-color: #047857;
+  right: 0;
+  position: absolute;
+  width: 25px;
+  height: 70px;
+  border-radius: 5px 0 0 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rightCon .swiper-button-next::after{
+  font-size: 15px;
+  color: white;
+}
+
+.seler-bg{
+  border-radius: 97% 0% 10% 0% / 100% 3% 10% 51% ;
+  opacity: 1;
+}
+
+input{
+  border: none;
+}
+
+/* input:focus{
+  outline: none!important;
+  border: none!important;
+} */
+.search-btn{
+  border-radius:8px;
+}
+.v-arrow{
+  display: none;
+}
+.cli:hover >.v-arrow{
+  display: block;
+}
+
+
+/* stepper */
+.css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-active{
+  color: #34D399!important;
+}
+/* stepper */
+
+
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
