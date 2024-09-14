@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const TopBar = () => {
   return (
-    <div>
+    <div className='bg-gray-300'>
       <nav>
         <ul>
           <li><Link to="newproduct">New Product</Link></li>

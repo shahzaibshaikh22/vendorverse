@@ -8,6 +8,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Verify = () => {
   const user = useSelector((state) => state.auth.user);
+  console.log(user.email);
+  
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const [values, setValues] = useState({
     email:user.email
@@ -18,7 +20,10 @@ const Verify = () => {
   const [seconds, setSeconds] = useState(60);
 
   // state for user data 
-  let email = user.email
+  if(user){
+    let email;
+     email = user.email
+  }
   const navigate = useNavigate()
 
 
@@ -41,7 +46,7 @@ const Verify = () => {
     const enteredOtp = otp.join('');
     let userCre = {
       otp:enteredOtp,
-      email:user.user.email
+      email:user.email
     }
     const {  data }  = await verifyOtp(userCre);
     if(data.msg){

@@ -10,10 +10,15 @@ import { setCartLength } from '../redux/features/slices/authSlice';
 
 const Cart = () => {
   const {mode, user, lenghts} = useSelector((state)=> state.auth);
+  console.log(user);
+  
   // const lenghtCart = useSelector((state)=> state.authProducts.IncartLength);
   const dispatch = useDispatch()
   // user id 
-  let userId = user._id
+  let userId;
+  if(user){
+     userId = user._id
+  }
   // fetching user cart
   const { data:userCart, isLoading:cartLoading } = useFetchCartItemsQuery(userId)
 
@@ -69,7 +74,7 @@ if(cartLoading){
 
   return (
     <section className={`w-full  mx-auto flex  h-screen pt-20 ${mode === "dark" ? 'bg-darkbg text-white' : 'bg-lightbg text-gray-950'}`}>
-      {userCart && userCart.length !== 0 ? (
+      {userCart && userCart.length >0 ? (
          <div className={`w-full xl:max-w-[1440px] h-auto mx-auto flex gap-4`}>
          <div className='w-full xl:max-w-7xl  lg:max-w-7xl flex flex-col gap-6 '>
          <div>
@@ -98,14 +103,16 @@ if(cartLoading){
             <form className='w-full flex flex-col gap-6'>
               <div className='w-full'>
                 <select className={`select select-bordered rounded-full w-full ${mode === 'dark' ? 'bg-darkufg text-white' : 'bg-gray-200 text-gray-900'}`}>
-                <option disabled selected>Country</option>
+                <option disabled selected>{user ? user.country : 'Country'}</option>
+                <option>{user && user.country}</option>
                 <option>Han Solo</option>
                 <option>Greedo</option>
               </select>
               </div>
               <div className='w-full flex items-center gap-4'>
               <select className={`select select-bordered rounded-full w-full ${mode === 'dark' ? 'bg-darkufg text-white' : 'bg-gray-200 text-gray-900'}`}>
-                <option disabled selected>state/city</option>
+                <option disabled selected>{user ? user.state : 'State/city'}</option>
+                <option>{user && user.state}</option>
                 <option>Han Solo</option>
                 <option>Greedo</option>
               </select>

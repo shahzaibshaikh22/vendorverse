@@ -1,82 +1,57 @@
-import React from 'react';
-import "./App.css";
-import Navbar from './components/Navbar';
-import {BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Register from './pages/Register';
-import Login from './pages/Login';
-import Verify from './pages/Verify';
-import Home from "./pages/Home"
-import Profile from './pages/Profile';
-import ProtectedRoute from './ProtectedRoute';
-import CartProtected from './CartProtected';
-import Emptycart from './pages/Emptycart';
-import Cart from './pages/Cart';
-import Wishlist from './pages/Wishlist';
-import MainHome from './pages/MainHome';
-import SingleProduct from './pages/SingleProduct';
-import BecomeSeller from './pages/BecomeSeller';
-import UserAdmin from './dashboardMiddlewares/UserAdmin';
-import UserDashboard from './dashboard/UserDashboard';
-import UnauthorizedAdmin from './ErrorPages/UnauthorizedAdmin';
-import { useSelector } from 'react-redux';
-// import SuperAdmin from './dashboardMiddlewares/SuperAdmin';
-import AdminDashboard from './dashboard/AdminDashboard';
-import SellerDashboard from './dashboard/SellerDashboard';
-import SellerWaiting from './pages/SellerWaiting';
-import FilterCategory from './pages/FilterCategory';
+import React from 'react'
+import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import AdminLayout from './adminlayout/AdminLayout'
+import UserLayout from './userlayout/UserLayout'
+import MainHome from "./pages/MainHome"
+import Profile from "./pages/Profile"
+import CartProtected from "./CartProtected"
+import Cart from "./pages/Cart"
+import Wishlist from "./pages/Wishlist"
+import Register from "./pages/Register"
+import Login from "./pages/Login"
+import Verify from "./pages/Verify"
+import BecomeSeller  from "./pages/BecomeSeller"
+import SingleProduct   from "./pages/SingleProduct"
 import AllProducts from './pages/AllProducts';
-import NewProduct from './DashboardComponents/NewProduct';
-import Users from './DashboardComponents/Users';
-import MainPanel from './DashboardComponents/MainPanel';
-// import Signup from './screens/Signup';
-// import VBar from './components/VBar';
+import FilterCategory from './pages/FilterCategory';
+import Emptycart from './pages/Emptycart';
+import UserDashboard from "./dashboard/UserDashboard"
+import "./App.css"
 
+// admin routes impotrs
+import AdminDashboard from './dashboard/AdminDashboard';
+import AllUsers from './adminlayout/adminPages/AllUsers'
+import Home from './adminlayout/adminPages/Home'
 
 const App = () => {
-  const user = useSelector((state) => state.auth.user);
-
   return (
-    <div>
-    <Router>
-    <Navbar/>
-    {/* <VBar/> */}
+   <BrowserRouter>
     <Routes>
-        <Route element={<ProtectedRoute/>}>
-          <Route element={<Profile/>} path="/profile" exact />
-          <Route element={<Home/>} path="/home" exact />
+      <Route    path="/"       element={<UserLayout/>}>
+        <Route  path="" index  element={<MainHome/>} />
+        <Route  path="profile" element={<Profile/>} />
+        <Route  path="dashboard" element={<UserDashboard/>} />
+          <Route path="register" element={<Register />} />
+          <Route path="verify" element={<Verify />} />
+          <Route path="login" element={<Login />} />
+          <Route path="product/:_id" element={<SingleProduct />} />
+          <Route path="becomeseller" element={<BecomeSeller />} />
+          <Route path="products" element={<AllProducts />} />
+          <Route path="emptycart" element={<Emptycart />} />
+          <Route path="filter/:c" element={<FilterCategory />} />
+        <Route element={<CartProtected />}>
+            <Route element={<Wishlist />} path="wishlist" exact />
+            <Route element={<Cart />} path="cart" exact />
         </Route>
-        <Route element={<CartProtected/>}>
-          <Route element={<Cart/>} path="/cart" exact />
-        <Route  element={<Wishlist/>}  path="/wishlist" exact/>  
-        </Route>
-        <Route element={<UserAdmin/>} >
-          {user && user.role === "useradmin" && 
-            <Route  element={<UserDashboard/>} path="/dashboard" > 
-              <Route path="newproduct" element={<NewProduct />} />
-            </Route>}
-          {user && user.role === "superadmin" &&
-           <Route element={<AdminDashboard/>} path="/dashboard">
-               <Route path="newproduct" element={<NewProduct />} />
-               <Route index path="" element={<MainPanel />} />
-               <Route path="userslist" element={<Users />} />
-            </Route>}
-          {user && user.role === "selleradmin" && <Route element={<SellerDashboard/>} path="/dashboard" exact />}
-        </Route>
-        <Route path="/register" element={<Register/>}/>  
-        <Route path="/verify" element={<Verify/>}/>  
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/product/:_id" element={<SingleProduct/>}/>
-        <Route path="/becomeseller" element={<BecomeSeller/>}/>
+      </Route>
 
-        <Route path="/" element={<MainHome/>}/>  
-        <Route path="/waiting" element={<SellerWaiting/>}/>  
-        <Route path="/filter/:category" element={<FilterCategory/>}/>  
-        <Route path="/products" element={<AllProducts/>}/>  
-        <Route element={<Emptycart/>} path="/emptycart" />
-        <Route element={<UnauthorizedAdmin/>} path="*" />
-      </Routes>
-    </Router>
-    </div>
+      <Route    path="/admin"  element={<AdminLayout/>}>
+        {/* <Route  path="" index  element={<Home/>} /> */}
+        <Route  path="users"  element={<AllUsers/>} />
+        <Route  path="dashboard"  element={<AdminDashboard/>} />
+     </Route>
+   </Routes>
+   </BrowserRouter>
   )
 }
 

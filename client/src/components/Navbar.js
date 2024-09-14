@@ -112,14 +112,14 @@ const handleAdminSwitch = async()=>{
           </li>
           <li>
             <div className='flex items-center relative'>
-              <Link to="/wishlist" className='flex items-center gap-3'><GoHeart size={25}/> </Link>
+              <Link to="wishlist" className='flex items-center gap-3'><GoHeart size={25}/> </Link>
               <span className='absolute top-[-5px] right-0 text-darkbg bg-emerald-400 p-1 flex items-center justify-center rounded-full w-4 h-4 text-[13px]'>{wishLength ? wishLength : 0}</span>
             </div>
           </li>
         
           <li>
           <div className='flex items-center relative'>
-             <Link to="/cart" className='flex items-center gap-3'><BsHandbag size={25} /></Link>
+             <Link to="cart" className='flex items-center gap-3'><BsHandbag size={25} /></Link>
              <span className='absolute top-[-5px] right-0 text-darkbg bg-emerald-400 p-1 flex items-center justify-center rounded-full w-4 h-4 text-[13px]'>{lenghts ? lenghts : 0}</span>
            </div>
           </li> 
@@ -140,11 +140,17 @@ const handleAdminSwitch = async()=>{
        )}
       </Dropdown.Header>
       <Dropdown.Item icon={FaUserAlt}>
-        <Link to="/profile">My profile</Link>
+        <Link to="profile">My profile</Link>
       </Dropdown.Item>
-      <Dropdown.Item icon={HiViewGrid}>
-        <Link to="/dashboard">Dashboard</Link>
+       {user.role === "useradmin" ? (
+        <Dropdown.Item icon={HiViewGrid}>
+        <Link to="dashboard">Dashboard</Link>
       </Dropdown.Item>
+       ): (
+        <Dropdown.Item icon={HiViewGrid}>
+        <Link to="/admin/dashboard">Dashboard</Link>
+      </Dropdown.Item>
+       )}
        {user && user.isSeller === true && user.isAdmin === false && (
          <Dropdown.Item icon={HiSwitchHorizontal}>
          <li onClick={handleSwitchRole}>{user.role === "useradmin" ? 'switch to seller' : 'switch to user'}</li>
@@ -172,13 +178,13 @@ const handleAdminSwitch = async()=>{
           </li>
           <li>
             <div className='flex items-center relative'>
-              <Link to="/wishlist" className='flex items-center gap-3'><GoHeart size={25}/> </Link>
+              <Link to="wishlist" className='flex items-center gap-3'><GoHeart size={25}/> </Link>
             </div>
           </li>
         
           <li>
             <div className='flex items-center relative'>
-              <Link to="/cart" className='flex items-center gap-3'><BsHandbag size={25} /></Link>
+              <Link to="cart" className='flex items-center gap-3'><BsHandbag size={25} /></Link>
             </div>
           </li>          
           <li>

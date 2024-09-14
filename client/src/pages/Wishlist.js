@@ -8,7 +8,6 @@ import { setWishListLength } from '../redux/features/slices/authSlice';
 const Wishlist = () => {
 
   const {mode, user,wishLength} = useSelector((state) => state.auth)
-  console.log(wishLength);
   let userId;
   if(user){
      userId = user._id

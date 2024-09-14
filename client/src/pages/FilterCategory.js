@@ -25,24 +25,28 @@ const FilterCategory = () => {
 
   
   const [view,setView] = useState(true)
-  const {category} = useParams()
+  const {c} = useParams()
+  console.log(c);
+  
 
   const { data, isLoading } = useFetchAllProductsQuery()
+
+  
   if(isLoading){
     return (
       <Loading/>
     )
   }
 
-
-
-
-  const categoryProducts = data.filter((item)=> item.category === category)
+  const categoryProducts = data.filter((item)=> item.category === c)
+  
 
     // filter products with brand
     const filteredProducts = categoryProducts.filter(product =>
       (selectedBrands.length === 0 && selectedLocations.length === 0  || selectedBrands.includes(product.brand) || selectedLocations.includes(product.location))
     );
+  console.log(filteredProducts);
+
     // filter products with brand
 
     // clear filters function 

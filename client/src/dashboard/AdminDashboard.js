@@ -10,18 +10,15 @@ const AdminDashboard = () => {
 
 
 // this function handle the dashboard routing
-  useEffect(()=>{
-    if(user.role !== ""){
-      navigate('/dashboard')
-    }
-  },[user.role])
+  // useEffect(()=>{
+  //   if(user.role !== ""){
+  //     navigate('/dashboard')
+  //   }
+  // },[user.role])
   return (
     <section className={`w-full h-screen  bg-red-500 pt-20`}>
       <div className='w-full h-full flex'>
-     <div className='w-[300px]'>
-     <SideBar/>
-     </div>
-     <div className='w-full'>
+     <div className='w-full flex'>
       <Outlet/>
      </div>
       </div>
