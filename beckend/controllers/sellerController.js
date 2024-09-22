@@ -13,7 +13,7 @@ const registerSeller = asyncHandler(async (req,res)=>{
     const user = await USERMODEL.findOne({email});
     const seller = await Sellers.findOne({email});
     if(seller){
-        return res.status(400).json({err:"Seller already exists...!"});
+        return res.json({err:"Seller already exists...!"});
     }
     const requestUser = await USERMODEL.findOne({email});
     if(!requestUser){

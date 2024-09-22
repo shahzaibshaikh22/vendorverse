@@ -355,7 +355,8 @@ const updateProfile = async (req, res)=>{
       avatar:updatedUser.avatar,
       isSeller:updatedUser.isSeller,
       isActive:updatedUser.isActive = "online",
-      isAdmin:updatedUser.isAdmin
+      isAdmin:updatedUser.isAdmin,
+      step:updatedUser.step
     }})
   }
    return res.json({err:"user not found"})

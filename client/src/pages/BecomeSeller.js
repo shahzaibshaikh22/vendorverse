@@ -33,6 +33,8 @@ const BecomeSeller = () => {
       isLoading = true
       e.preventDefault();
       const res = await register(values)
+      console.log(res.data.err);
+      
       if(res.data.msg){
         toast.success(res.data.msg)
         isLoading = false

@@ -21,6 +21,10 @@ const sellerRequest =  mongoose.Schema({
         type:String,
         default:"pending"
     },
+    step:{
+        type:Number,
+        default:0
+    },
     payment:{
         type:String,
         default:"pending"

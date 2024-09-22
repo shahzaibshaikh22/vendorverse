@@ -16,6 +16,7 @@ import AllProducts from './pages/AllProducts';
 import FilterCategory from './pages/FilterCategory';
 import Emptycart from './pages/Emptycart';
 import UserDashboard from "./dashboard/UserDashboard"
+import SellerWaiting from "./pages/SellerWaiting"
 import "./App.css"
 
 // admin routes impotrs
@@ -38,6 +39,7 @@ const App = () => {
           <Route path="becomeseller" element={<BecomeSeller />} />
           <Route path="products" element={<AllProducts />} />
           <Route path="emptycart" element={<Emptycart />} />
+          <Route path="waiting" element={<SellerWaiting />} />
           <Route path="filter/:c" element={<FilterCategory />} />
         <Route element={<CartProtected />}>
             <Route element={<Wishlist />} path="wishlist" exact />
