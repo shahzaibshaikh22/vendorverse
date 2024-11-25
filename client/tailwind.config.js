@@ -13,7 +13,7 @@ module.exports = {
         darkbg: "#18191A", 
         darkfg: "#242526",
         darkufg: "#3A3B3C",
-        lightgray: "#E4E6EB",
+        lightgray: "#E1E1E1",
         darkgray: "#B0B3B8",
         lightbg: "#F0F2F5",
         lightfg: "#FFFFFF",

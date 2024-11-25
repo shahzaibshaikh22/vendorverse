@@ -73,7 +73,7 @@ const handleAdminSwitch = async()=>{
 
   return (
   <>
-       <nav className={`w-full py-4 xl:max-w-[1440px] px-4 rounded-b-lg lg:max-w-[1024px] mx-auto md:flex hidden transition-all duration-150 ease-in-out items-center justify-between ${mode === "dark" ? 'bg-darkfg text-lightgray' : 'bg-lightfg  text-gray-950'}  drop-shadow-lg py-2 fixed top-0 left-0 right-0 z-[999]`}>
+       <nav className={`w-full py-4  px-4 rounded-b-lg  mx-auto md:flex hidden transition-all duration-150 ease-in-out items-center justify-between ${mode === "dark" ? 'bg-darkufg text-lightgray' : 'bg-lightgray  text-gray-950'}   py-2 fixed top-0 left-0 right-0 z-[999]`}>
       <div className='flex items-center gap-10'>
         <Link to="/" className="text-2xl text-emerald-500">VendorVerse</Link>
         <div className='v-ul xl:flex hidden'>
@@ -92,7 +92,7 @@ const handleAdminSwitch = async()=>{
      
       <form className={`w-full lg:block hidden drop-shadow-lg  xl:max-w-sm lg:max-w-xs  rounded-md`}>
         <div className='w-full relative'>
-          <input className={`w-full py-1  h-9 ${mode === "dark" ? 'bg-darkufg placeholder:text-lightbg text-lightbg' : 'bg-lightbg text-darkbg placeholder:text-darkbg'} focus:outline-none focus:ring-1 focus:ring-emerald-500  rounded-md pl-10 font-thin  `} type="text" name="" id="" placeholder='Search' />
+          <input className={`w-full py-1  h-9 ${mode === "dark" ? 'bg-darkbg placeholder:text-lightbg text-lightbg' : 'bg-lightbg text-darkbg placeholder:text-darkbg'} focus:outline-none focus:ring-1 focus:ring-emerald-500  rounded-md pl-10 font-thin  `} type="text" name="" id="" placeholder='Search' />
           <button type="submit" className='search-btn bg-emerald-400 px-4 w-12 flex items-center justify-center h-[80%] absolute top-[3px] right-[4px]'>
           <CiSearch className={`${mode === "dark" ? 'text-white' : 'text-gray-950'} text-3xl `} />
           </button>
@@ -144,7 +144,7 @@ const handleAdminSwitch = async()=>{
       </Dropdown.Item>
        {user.role === "useradmin" ? (
         <Dropdown.Item icon={HiViewGrid}>
-        <Link to="dashboard">Dashboard</Link>
+        <Link to="user/dashboard">Dashboard</Link>
       </Dropdown.Item>
        ): (
         <Dropdown.Item icon={HiViewGrid}>

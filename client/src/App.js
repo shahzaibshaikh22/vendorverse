@@ -23,15 +23,25 @@ import "./App.css"
 import AdminDashboard from './dashboard/AdminDashboard';
 import AllUsers from './adminlayout/adminPages/AllUsers'
 import Home from './adminlayout/adminPages/Home'
+import UserDashboardLayout from './userlayout/UserDashboardLayout'
+import DashboardOverview from './userlayout/DashboardOverview'
 
 const App = () => {
   return (
    <BrowserRouter>
     <Routes>
-      <Route    path="/"       element={<UserLayout/>}>
-        <Route  path="" index  element={<MainHome/>} />
-        <Route  path="profile" element={<Profile/>} />
-        <Route  path="dashboard" element={<UserDashboard/>} />
+      {/* user layout and pages */}
+      <Route   path="/"       element={<UserLayout/>}>
+          <Route  path="" index  element={<MainHome/>} />
+          <Route  path="profile" element={<Profile/>} />
+          {/* <Route  path="dashboard" element={<UserDashboard/>} /> */}
+          <Route path="user" element={<UserDashboardLayout />}>
+            <Route path="overview" element={<DashboardOverview />} />
+            <Route path="dashboard" index element={<UserDashboard />} />
+            <Route path="settings" element={<DashboardOverview />} />
+            <Route path="orders" element={<DashboardOverview />} />
+            <Route path="help" element={<DashboardOverview />} />
+          </Route>
           <Route path="register" element={<Register />} />
           <Route path="verify" element={<Verify />} />
           <Route path="login" element={<Login />} />
@@ -41,9 +51,9 @@ const App = () => {
           <Route path="emptycart" element={<Emptycart />} />
           <Route path="waiting" element={<SellerWaiting />} />
           <Route path="filter/:c" element={<FilterCategory />} />
-        <Route element={<CartProtected />}>
-            <Route element={<Wishlist />} path="wishlist" exact />
-            <Route element={<Cart />} path="cart" exact />
+          <Route element={<CartProtected />}>
+          <Route element={<Wishlist />} path="wishlist" exact />
+          <Route element={<Cart />} path="cart" exact />
         </Route>
       </Route>
 
