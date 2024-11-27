@@ -8,7 +8,7 @@ const UserLayout = () => {
     <div>
         <Navbar />
         <Outlet/>
-        <Footer/>
+        {/* <Footer/> */}
     </div>
   )
 }

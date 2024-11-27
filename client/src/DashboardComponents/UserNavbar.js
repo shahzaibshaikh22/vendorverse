@@ -1,6 +1,6 @@
 import { Key } from "lucide-react";
 import React, { useState } from "react";
-import { FaHome, FaUser, FaCog, FaShoppingCart, FaChevronRight, FaHeart } from "react-icons/fa";
+import { FaHome, FaUser, FaCog, FaShoppingCart, FaChevronRight, FaHeart, FaShoppingBag } from "react-icons/fa";
 import { GoHeart } from "react-icons/go";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
@@ -20,11 +20,12 @@ const UserNavbar = () => {
     { path: "/user/settings", label: "Settings", icon:<FaCog/>  },
     { path: "/cart", label: "Cart", icon:<FaShoppingCart/> },
     { path: "/wishlist", label: "Wishlist",icon:<FaHeart/>  },
+    { path: "/user/orders", label: "Orders",icon:<FaShoppingBag/>  },
   ];
 
 const { mode } = useSelector(((state)=>state.auth))
   return (
-    <div className="flex sticky left-0 top-0"> 
+    <div className="flex " > 
       {/* Sidebar */}
       <div className={`drop-shadow-md pt-20 relative ${mode === "dark" ? 'bg-darkufg text-white' : 'bg-lightgray text-red-200'} h-screen ${
           isOpen ? "w-64" : "w-16"
@@ -33,7 +34,7 @@ const { mode } = useSelector(((state)=>state.auth))
         {/* Toggle Button */}
         <button
           onClick={toggleSidebar}
-          className={`${mode === "dark" ? 'bg-darkfg hover:bg-darkufg text-white' : 'bg-lightfg hover:bg-lightbg text-darkbg'} h-[80px] absolute -right-[24px] top-[40%]  m-2 `}
+          className={`${mode === "dark" ? 'bg-darkufg hover:bg-darkbg text-white' : 'bg-lightfg hover:bg-lightbg text-darkbg'} h-[80px] absolute -right-[24px] top-[40%]  m-2 `}
         >
          <FaChevronRight/>
         </button>

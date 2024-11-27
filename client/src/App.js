@@ -25,6 +25,7 @@ import AllUsers from './adminlayout/adminPages/AllUsers'
 import Home from './adminlayout/adminPages/Home'
 import UserDashboardLayout from './userlayout/UserDashboardLayout'
 import DashboardOverview from './userlayout/DashboardOverview'
+import OrderTrack from './userlayout/OrderTrack'
 
 const App = () => {
   return (
@@ -39,7 +40,7 @@ const App = () => {
             <Route path="overview" element={<DashboardOverview />} />
             <Route path="dashboard" index element={<UserDashboard />} />
             <Route path="settings" element={<DashboardOverview />} />
-            <Route path="orders" element={<DashboardOverview />} />
+            <Route path="orders" element={<OrderTrack />} />
             <Route path="help" element={<DashboardOverview />} />
           </Route>
           <Route path="register" element={<Register />} />
