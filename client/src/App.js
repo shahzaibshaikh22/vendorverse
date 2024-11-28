@@ -26,6 +26,9 @@ import Home from './adminlayout/adminPages/Home'
 import UserDashboardLayout from './userlayout/UserDashboardLayout'
 import DashboardOverview from './userlayout/DashboardOverview'
 import OrderTrack from './userlayout/OrderTrack'
+import OrderHistory from './userlayout/OrderHistory'
+import UserOrderHistory from './userlayout/UserOrderHistory'
+import Checkout from './userlayout/Checkout'
 
 const App = () => {
   return (
@@ -41,7 +44,9 @@ const App = () => {
             <Route path="dashboard" index element={<UserDashboard />} />
             <Route path="settings" element={<DashboardOverview />} />
             <Route path="orders" element={<OrderTrack />} />
+            <Route path="history" element={<UserOrderHistory />} />
             <Route path="help" element={<DashboardOverview />} />
+            <Route path="checkout" element={<Checkout />} />
           </Route>
           <Route path="register" element={<Register />} />
           <Route path="verify" element={<Verify />} />

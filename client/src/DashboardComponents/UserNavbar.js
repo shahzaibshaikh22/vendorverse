@@ -21,6 +21,7 @@ const UserNavbar = () => {
     { path: "/cart", label: "Cart", icon:<FaShoppingCart/> },
     { path: "/wishlist", label: "Wishlist",icon:<FaHeart/>  },
     { path: "/user/orders", label: "Orders",icon:<FaShoppingBag/>  },
+    { path: "/user/history", label: "Orders History",icon:<FaShoppingBag/>  },
   ];
 
 const { mode } = useSelector(((state)=>state.auth))

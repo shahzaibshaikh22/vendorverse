@@ -6,6 +6,7 @@ import SingleCartItem from '../components/SingleCartItem';
 import Loading from "../components/Loading"
 import { useFetchCartItemsQuery, useGetTotalPriceQuery } from '../redux/features/apiSlices/productApiSlice';
 import { setCartLength } from '../redux/features/slices/authSlice'; 
+import { Link } from 'react-router-dom';
 
 
 const Cart = () => {
@@ -148,6 +149,11 @@ if(cartLoading){
               <h1>Sub Total</h1>
               <span>{totalPrice}</span>
               </div>
+            </div>
+            <div className='w-full p-4 bg-emerald-500 rounded-full text-center'>
+              <Link to="/user/checkout" className="w-full text-white font-semibold">
+                Checkout
+              </Link>
             </div>
           </div>
         </div>
