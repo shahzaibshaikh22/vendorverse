@@ -29,6 +29,9 @@ import OrderTrack from './userlayout/OrderTrack'
 import OrderHistory from './userlayout/OrderHistory'
 import UserOrderHistory from './userlayout/UserOrderHistory'
 import Checkout from './userlayout/Checkout'
+import AddProduct from './adminlayout/adminPages/AddProduct'
+import ManageUsers from './adminlayout/adminPages/ManageUsers'
+import SellersRequest from './adminlayout/adminPages/SellersRequest'
 
 const App = () => {
   return (
@@ -39,15 +42,6 @@ const App = () => {
           <Route  path="" index  element={<MainHome/>} />
           <Route  path="profile" element={<Profile/>} />
           {/* <Route  path="dashboard" element={<UserDashboard/>} /> */}
-          <Route path="user" element={<UserDashboardLayout />}>
-            <Route path="overview" element={<DashboardOverview />} />
-            <Route path="dashboard" index element={<UserDashboard />} />
-            <Route path="settings" element={<DashboardOverview />} />
-            <Route path="orders" element={<OrderTrack />} />
-            <Route path="history" element={<UserOrderHistory />} />
-            <Route path="help" element={<DashboardOverview />} />
-            <Route path="checkout" element={<Checkout />} />
-          </Route>
           <Route path="register" element={<Register />} />
           <Route path="verify" element={<Verify />} />
           <Route path="login" element={<Login />} />
@@ -63,11 +57,28 @@ const App = () => {
         </Route>
       </Route>
 
+      {/* user dashboard routes */}
+      <Route path="user" element={<UserDashboardLayout />}>
+            <Route path="overview" element={<DashboardOverview />} />
+            <Route path="dashboard" index element={<UserDashboard />} />
+            <Route path="settings" element={<DashboardOverview />} />
+            <Route path="orders" element={<OrderTrack />} />
+            <Route path="history" element={<UserOrderHistory />} />
+            <Route path="help" element={<DashboardOverview />} />
+            <Route path="checkout" element={<Checkout />} />
+          </Route>
+      {/* user dashboard routes */}
+
+      {/* admin routes */}
       <Route    path="/admin"  element={<AdminLayout/>}>
         {/* <Route  path="" index  element={<Home/>} /> */}
-        <Route  path="users"  element={<AllUsers/>} />
+        <Route  path="users"  element={<ManageUsers/>} />
         <Route  path="dashboard"  element={<AdminDashboard/>} />
+        <Route  path="newproduct"  element={<AddProduct/>} />
+        <Route  path="requests"  element={<SellersRequest/>} />
      </Route>
+      {/* admin routes */}
+
    </Routes>
    </BrowserRouter>
   )

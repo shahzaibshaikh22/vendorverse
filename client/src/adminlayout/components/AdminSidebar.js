@@ -1,11 +1,11 @@
 import { Key } from "lucide-react";
 import React, { useState } from "react";
-import { FaHome, FaUser, FaCog, FaShoppingCart, FaChevronRight, FaHeart, FaShoppingBag } from "react-icons/fa";
+import { FaHome, FaUser, FaCog, FaShoppingCart, FaChevronRight, FaHeart, FaShoppingBag, FaProductHunt } from "react-icons/fa";
 import { GoHeart } from "react-icons/go";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 
-const UserNavbar = () => {
+const AdminSidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
 
   const toggleSidebar = () => {
@@ -15,20 +15,19 @@ const UserNavbar = () => {
   const location = useLocation()
 
   const links = [
-    { path: "/user/dashboard", label: "Overview", icon:<FaHome/> },
+    { path: "/admin/dashboard", label: "Overview", icon:<FaHome/> },
     { path: "/profile", label: "Profile", icon:<FaUser/>  },
-    { path: "/user/settings", label: "Settings", icon:<FaCog/>  },
-    { path: "/cart", label: "Cart", icon:<FaShoppingCart/> },
-    { path: "/wishlist", label: "Wishlist",icon:<FaHeart/>  },
-    { path: "/user/orders", label: "Orders",icon:<FaShoppingBag/>  },
-    { path: "/user/history", label: "Orders History",icon:<FaShoppingBag/>  },
+    { path: "/admin/newproduct", label: "Add product", icon:<FaProductHunt/>  },
+    { path: "/admin/users", label: "Manage users", icon:<FaCog/>  },
+    { path: "/admin/requests", label: "Sellers request", icon:<FaCog/>  },
+
   ];
 
 const { mode } = useSelector(((state)=>state.auth))
   return (
     <div className="flex h-screen realtive" > 
       {/* Sidebar */}
-      <div className={`drop-shadow-md  sticky top-0 left-0 ${mode === "dark" ? 'bg-darkufg text-white' : 'bg-lightfg text-red-200'} h-full ${
+      <div className={`drop-shadow-md  sticky top-0 left-0 ${mode === "dark" ? 'bg-darkfg text-white' : 'bg-lightfg text-red-200'} h-full ${
           isOpen ? "w-64" : "w-16"
         } transition-width duration-300 flex flex-col`}
       >
@@ -65,4 +64,4 @@ const { mode } = useSelector(((state)=>state.auth))
   );
 };
 
-export default UserNavbar;
+export default AdminSidebar;

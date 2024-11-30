@@ -1,10 +1,12 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { FaStumbleuponCircle, FaTimes } from "react-icons/fa"
 import axios from "axios"
 import { useDispatch, useSelector } from 'react-redux'
 import { setCredinttials } from '../redux/features/slices/authSlice'
+import { useNavigate } from 'react-router-dom'
 
 const UploadAvatar = ({showUpload, setShowUpload}) => {
+  const navigate = useNavigate()
     const [Avatar, setAvatar] = useState("")
     const [isSubmit, setIsSubmit] = useState(false)
     const user = useSelector((state)=>state.auth.user)
@@ -24,6 +26,13 @@ const UploadAvatar = ({showUpload, setShowUpload}) => {
               setAvatar("")
               setIsSubmit(true)
     }
+    useEffect(()=>{
+        if(isSubmit){
+          setTimeout(() => {
+           isSubmit(false)
+          }, 3000);
+        }
+    },[])
   return (
     <div className={showUpload ? 'scale-100 w-full h-screen  bg-zinc-800 transition-all duration-150 ease-in-out z-[10]  fixed top-0 left-0 flex items-center justify-center' : 'scale-0 w-full h-screen ease-in-out  bg-zinc-800 transition-all duration-150  fixed z-[10] top-0 left-0 flex items-center justify-center'}>
     {isSubmit ? (

@@ -14,7 +14,7 @@ const steps = [
   ];
   return (
     <div className='w-full max-w-xl'>
-      <Stepper className='w-full p-4 bg-emerald-50 rounded-md' activeStep={user ? user.step : 1} alternativeLabel>
+      <Stepper className='w-full p-4 bg-emerald-50 rounded-md' activeStep={user ? user.step : 0} alternativeLabel>
         {steps.map((label) => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>

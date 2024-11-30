@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { FaArrowRight } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom'; 
@@ -9,6 +9,8 @@ import { useSellerRequestMutation } from '../redux/features/apiSlices/sellerApiS
 
 const BecomeSeller = () => {
     const {mode, user} = useSelector((state)=> state.auth)
+    console.log(user.step);
+    
     let isLoading = useSelector((state)=> state.auth.isLoading)
     const [values, setValues] = useState(
       {
@@ -49,6 +51,16 @@ const BecomeSeller = () => {
 
       }
     }
+
+    useEffect(()=>{
+      if(user){
+        if(user.isApplied === true){
+          navigate("/waiting")
+          console.log("hn hai bhai");
+          
+        }
+      }
+    },[user,navigate])
 
     if(isLoading){
       return(

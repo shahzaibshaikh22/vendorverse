@@ -21,6 +21,10 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    warentyType: {
+        type: String,
+        default: "warrenty"
+    },
     isSale:{
         type:Boolean,
         default:false

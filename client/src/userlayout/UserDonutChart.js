@@ -55,8 +55,8 @@ const UserDonutChart = () => {
   };
 
   return (
-    <div className={`w-full relative max-w-sm h-[480px] rounded-md mt-3 border-[1px] ${mode === "dark" ? 'bg-transparent border-lightbg' : 'bg-transparent border-lightgray'}`}>
-        <h6 className={`text-lg px-4 py-1 ${mode === "dark" ? 'text-lightgray' : 'text-darkufg'}`}>Popular Categories</h6>
+    <div className={`w-full relative max-w-sm h-[480px] shadow-md rounded-md mt-3 ${mode === "dark" ? 'bg-darkfg' : 'bg-lightfg'}`}>
+        <h6 className={`text-lg px-4 py-1 ${mode === "dark" ? 'text-white' : 'text-darkufg'}`}>Popular Categories</h6>
         <div className="w-full h-[50%] mt-16 ">
         <Doughnut data={data} options={options} />
         <span className="absolute top-[46%] text-lg left-[43%]">${total}</span>

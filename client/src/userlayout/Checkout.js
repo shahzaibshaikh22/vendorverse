@@ -34,40 +34,40 @@ const Checkout = () => {
           {/* Shipping Form */}
           <form className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className={`block text-sm font-medium ${mode === "dark" ? 'text-lightgray' :'text-darkufg'}`}>
                 Full name
               </label>
               <input
                 type="text"
                 placeholder="Enter full name"
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500"
+                className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 ${mode ==="dark" ? 'bg-darkfg placeholder:text-lightfg text-lightfg' : 'bg-lightbg placeholder:text-darkfg text-darkfg'}`}
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className={`block text-sm font-medium ${mode === "dark" ? 'text-lightgray' :'text-darkufg'}`}>
                 Email address
               </label>
               <input
                 type="email"
                 placeholder="Enter email address"
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500"
+                className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 ${mode ==="dark" ? 'bg-darkfg placeholder:text-lightfg text-lightfg' : 'bg-lightbg placeholder:text-darkfg text-darkfg'}`}
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className={`block text-sm font-medium ${mode === "dark" ? 'text-lightgray' :'text-darkufg'}`}>
                 Phone number
               </label>
               <input
                 type="text"
                 placeholder="Enter phone number"
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500"
+                className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 ${mode ==="dark" ? 'bg-darkfg placeholder:text-lightfg text-lightfg' : 'bg-lightbg placeholder:text-darkfg text-darkfg'}`}
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className={`block text-sm font-medium ${mode === "dark" ? 'text-lightgray' :'text-darkufg'}`}>
                 Country
               </label>
-              <select className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+              <select className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 ${mode ==="dark" ? 'bg-darkfg placeholder:text-lightfg text-lightfg' : 'bg-lightbg placeholder:text-darkfg text-darkfg'}`}>
                 <option>Choose country</option>
                 <option>Pakistan</option>
                 <option>USA</option>
@@ -75,33 +75,33 @@ const Checkout = () => {
             </div>
             <div className="grid grid-cols-3 gap-2">
               <div>
-                <label className="block text-sm font-medium text-gray-700">
+                <label className={`block text-sm font-medium ${mode === "dark" ? 'text-lightgray' :'text-darkufg'}`}>
                   City
                 </label>
                 <input
                   type="text"
                   placeholder="Enter city"
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500"
+                  className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 ${mode ==="dark" ? 'bg-darkfg placeholder:text-lightfg text-lightfg' : 'bg-lightbg placeholder:text-darkfg text-darkfg'}`}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">
+                <label className={`block text-sm font-medium ${mode === "dark" ? 'text-lightgray' :'text-darkufg'}`}>
                   State
                 </label>
                 <input
                   type="text"
                   placeholder="Enter state"
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500"
+                  className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 ${mode ==="dark" ? 'bg-darkfg placeholder:text-lightfg text-lightfg' : 'bg-lightbg placeholder:text-darkfg text-darkfg'}`}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">
+                <label className={`block text-sm font-medium ${mode === "dark" ? 'text-lightgray' :'text-darkufg'}`}>
                   ZIP Code
                 </label>
                 <input
                   type="text"
                   placeholder="Enter ZIP code"
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500"
+                  className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 ${mode ==="dark" ? 'bg-darkfg placeholder:text-lightfg text-lightfg' : 'bg-lightbg placeholder:text-darkfg text-darkfg'}`}
                 />
               </div>
             </div>
@@ -111,7 +111,7 @@ const Checkout = () => {
                   type="checkbox"
                   className="h-4 w-4 text-emerald-500 focus:ring-emerald-500"
                 />
-                <span className="ml-2 text-sm text-gray-500">
+                <span className={`ml-2 text-sm text-gray-500 ${mode === "dark" ? 'text-gray-100' :'text-darkufg'}`}>
                   I have read and agree to the Terms and Conditions.
                 </span>
               </label>
@@ -133,14 +133,14 @@ const Checkout = () => {
             </div>
           </div>
           <div className="mt-6">
-            <label className="block text-sm font-medium text-gray-700">
+            <label className={`block text-sm font-medium ${mode === "dark" ? 'text-lightgray' :'text-darkufg'}`}>
               Discount code
             </label>
             <div className="flex items-center mt-1">
               <input
                 type="text"
                 placeholder="Enter discount code"
-                className="flex-grow border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500"
+                className={`flex-grow border border-gray-300 rounded-md shadow-sm py-2 px-3  focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 ${mode ==="dark" ? 'bg-darkfg placeholder:text-lightfg text-lightfg' : 'bg-lightbg placeholder:text-darkfg text-darkfg'}`}
               />
               <button className="ml-2 bg-emerald-500 text-white px-4 py-2 rounded-md">
                 Apply

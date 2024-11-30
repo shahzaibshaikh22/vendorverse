@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Line, Bar } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -36,6 +36,8 @@ const ShoppingAnalytics = () => {
     { date: "2024-11-06", amount: 250 },
     { date: "2024-11-07", amount: 50 },
   ]);
+  console.log(setData);
+  
 
   // Prepare data for the chart
   const chartData = {
@@ -88,24 +90,24 @@ const ShoppingAnalytics = () => {
       },
     },
   };
-  const handleFilter = (type) => {
-    if (type === "daily") {
-      setData([...data]); // Replace with daily data
-    } else if (type === "weekly") {
-      setData([...data]); // Replace with weekly data
-    } else if (type === "monthly") {
-      setData([...data]); // Replace with monthly data
-    }
-  };
+  // const handleFilter = (type) => {
+  //   if (type === "daily") {
+  //     setData([...data]); // Replace with daily data
+  //   } else if (type === "weekly") {
+  //     setData([...data]); // Replace with weekly data
+  //   } else if (type === "monthly") {
+  //     setData([...data]); // Replace with monthly data
+  //   }
+  // };
   return (
-    <div className={`w-full flex items-center  max-w-4xl mt-4 border-[1px]  ${mode === "dark" ? 'bg-transparent border-lightbg' : 'bg-transparent border-lightgray'} shadow-md rounded-md`}>
+    <div className={`w-full flex items-center  max-w-4xl mt-4  ${mode === "dark" ? 'bg-darkfg' : 'bg-lightfg'} shadow-md rounded-md`}>
       {/* <div className="flex gap-4 mb-4">
       <button onClick={() => handleFilter("daily")} className="btn text-red-900">Daily</button>
       <button onClick={() => handleFilter("weekly")} className="btn text-red-900">Weekly</button>
       <button onClick={() => handleFilter("monthly")} className="btn text-red-900">Monthly</button>
     </div> */}
       <div className="w-full shadow-md rounded-md">
-        <h6 className={`text-lg px-4 py-1 ${mode === "dark" ? 'text-lightgray' : 'text-darkufg'}`}>Shopping Analytics</h6>
+        <h6 className={`text-lg px-4 py-1 ${mode === "dark" ? 'text-white' : 'text-darkufg'}`}>Shopping Analytics</h6>
       <Bar data={chartData} options={options} />
       </div>
     </div>

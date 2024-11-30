@@ -163,7 +163,7 @@ const handleAdminSwitch = async()=>{
        )}
       <Dropdown.Divider />
       <Dropdown.Item onClick={handleLogout} icon={HiLogout}>Sign out</Dropdown.Item>
-    </Dropdown>
+          </Dropdown>
          </div>
         ) :
         <div className="navbar-center hidden lg:flex">

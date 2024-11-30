@@ -30,6 +30,8 @@ const registerSeller = asyncHandler(async (req,res)=>{
         city,
         phone,
     })
+    user.isApplied = true
+    user.save();
     await newRequest.save();
     return res.json({msg:"Your request has been is submited", status:200})
    } catch (error) {

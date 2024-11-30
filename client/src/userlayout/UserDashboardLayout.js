@@ -1,15 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Outlet } from 'react-router-dom'
 import UserNavbar from '../DashboardComponents/UserNavbar'
 
 const UserDashboardLayout = () => {
-  const [open, setOpen] = useState(false)
   return (
     <div className='w-full  h-screen transition-all duration-100 ease-in'>
-      <div className='w-full flex h-full'>
-        {/* <div className={`${open ? 'w-[280px]' : 'w-[80px]'} h-full overflow-x-hidden`}>
-          <UserNavbar/>
-        </div> */}
+      <div className='w-full flex relative h-screen'>
         <UserNavbar/>
         <div className='w-full h-full'>
         <Outlet/>

@@ -1,6 +1,5 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import SingleWishlistItem from '../components/SingleWishlistItem'
 import SingleRecentShop from './SingleRecentShop'
 
 const RecentShopping = () => {

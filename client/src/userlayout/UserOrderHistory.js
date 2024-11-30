@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-
+import { Link } from "react-router-dom";
 const UserOrderHistory = () => {
     const { mode } = useSelector((state)=>state.auth);
   return (
@@ -48,12 +48,12 @@ const UserOrderHistory = () => {
             <span className="font-bold">Ship to:</span> Irakli Lolashvili
           </p>
           <div className="flex space-x-4 mt-2">
-            <a href="#" className="text-emerald-600 hover:underline">
+            <Link className="text-emerald-600 hover:underline">
               View order details
-            </a>
-            <a href="#" className="text-emerald-500 hover:underline">
+            </Link>
+            <Link className="text-emerald-500 hover:underline">
               View invoice
-            </a>
+            </Link>
           </div>
         </div>
 

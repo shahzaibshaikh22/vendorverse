@@ -45,7 +45,7 @@ const Register = () => {
     e.preventDefault();
     isLoading = true;
     const { data } = await registration(values);
-   if(data.user){
+   if(data && data.user){
     isLoading = false
     dispatch(setCredinttials(data.user))
     toast.success("OTP sent to your mail please verify your email!")

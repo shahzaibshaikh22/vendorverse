@@ -160,6 +160,7 @@ const userLogin = async (req,res)=>{
           avatar:user.avatar,
           isActive:user.isActive,
           isSeller:user.isSeller,
+          isApplied:user.isApplied,
           step:user.step,
           isAdmin:user.isAdmin
         }});
@@ -354,6 +355,7 @@ const updateProfile = async (req, res)=>{
       state:updatedUser.state,
       avatar:updatedUser.avatar,
       isSeller:updatedUser.isSeller,
+      isApplied:updatedUser.isApplied,
       isActive:updatedUser.isActive = "online",
       isAdmin:updatedUser.isAdmin,
       step:updatedUser.step
