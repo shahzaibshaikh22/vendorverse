@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import {  useGetSingleProductQuery, useAddProductToCartMutation, useDeleteWishistItemMutation } from '../redux/features/apiSlices/productApiSlice'
 
 const SingleWishlistItem = ({item}) => {
+  
 
     const { mode, user } = useSelector((state)=> state.auth)
 
@@ -16,12 +17,19 @@ const SingleWishlistItem = ({item}) => {
 
     // fetch single product
     const { data, isLoading } = useGetSingleProductQuery(item.productId)
+    let sellerId;
+    if(data){
+      sellerId = data.sellerId
+      
+    }
 
     // add product to cart
 
     const [addToCart] = useAddProductToCartMutation()
-    const handleAddToCart = async (productId) => {
-        const { data } = await addToCart({ productId, userId })
+    const handleAddToCart = async (product) => {
+      console.log(product);
+      
+        const { data } = await addToCart({ productId:product._id, sellerId:product.sellerId, userId })
         if (data.err) {
          alert(data.err)
         }
@@ -61,7 +69,7 @@ const SingleWishlistItem = ({item}) => {
            <div className='w-full flex items-center justify-center'>
            <div className='flex flex-col gap-1 items-center justify-center'>
             <span className='text-xs text-center'>{item.createdAt}</span>
-           <button onClick={()=>handleAddToCart(item.productId)} className='px-4 py-1 rounded-xl bg-emerald-500 '>Add to cart</button>
+           <button onClick={()=>handleAddToCart(data)} className='px-4 py-1 rounded-xl bg-emerald-500 '>Add to cart</button>
            </div>
            </div>
     </div>

@@ -79,6 +79,7 @@ const handleSubmit = async (e)=>{
   return (
     <section className={`${mode === "dark" ? 'bg-darkbg text-white' : 'bg-lightbg text-darkbg'} profile flex flex-col gap-4 w-full h-screen pt-20`}>
       <h1 className={`text-2xl text-center`}>My Profile</h1>
+      
       <div className='w-full xl:max-w-[1440px] flex gap-12 items-center justify-center lg:max-w-[1024px] mx-auto  h-full'>
         <div className='relative w-full h-full flex items-center flex-col gap-4'>
           <div className='w-60 h-60 bg-gray-400 rounded-full p-1 flex items-center justify-center'>

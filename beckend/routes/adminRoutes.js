@@ -1,5 +1,5 @@
 const express = require("express");
-const { getAllUsers,getUser,deleteUser, getAllRequests, approveRequest, approvePayment, approveSeller } = require("../controllers/adminController");
+const { getAllUsers,getUser,deleteUser, getAllRequests, approveRequest, approvePayment, approveSeller, getAllSellers, deleteRequest } = require("../controllers/adminController");
 const authenticateToken = require("../middleware/authenticte");
 const adminAuthenticate = require("../middleware/adminMiddleware");
 const route = express.Router();
@@ -27,8 +27,15 @@ route.post("/approve/request", authenticateToken, adminAuthenticate, approveRequ
 route.post("/approve/payment", authenticateToken, adminAuthenticate, approvePayment)
 
 
+// delete seller request route
+route.delete("/delete/request", authenticateToken, adminAuthenticate, deleteRequest)
+
+
 // approve seller as a seller
 route.post("/approve/seller", authenticateToken, adminAuthenticate, approveSeller)
+
+// get all seller profile
+route.get("/all/sellers", authenticateToken, adminAuthenticate, getAllSellers)
 
 
 module.exports = route;

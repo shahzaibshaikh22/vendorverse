@@ -34,7 +34,10 @@ app.use("/api/v1/seller", require("./routes/sellerRoutes"))
 app.use("/api/v1/product", require("./routes/productRoutes"))
 app.use("/api/v1/cart", require("./routes/cartRoutes"))
 app.use("/api/v1/wishlist", require("./routes/wishlistRoute"))
+app.use("/api/v1/chats", require("./routes/conversationRoutes"))
 app.use(express.static("uploads"))
+app.use(express.static("uploads/productimgs"))
+app.use(express.static("uploads/chat"))
 
 // app.use(notFound)
 // app.use(errorHandler)
@@ -52,25 +55,6 @@ const storage = multer.diskStorage({
 // Set up multer middleware
 const upload = multer({ storage: storage  });
 
-// Define a POST route for uploading images
-// app.post('/upload', upload.single('image'), async (req, res) => {
-//   try {
-//       const { filename, path, contentType } = req.file;
-
-//       const newImage = new Avatar({
-//           filename,
-//           path,
-//           contentType
-//       });
-
-//       await newImage.save();
-
-//       res.json({ message: 'Image uploaded successfully!' });
-//   } catch (error) {
-//       console.error(error);
-//       res.status(500).json({ message: 'Error uploading image' });
-//   }
-// });
 
 app.post('/upload', upload.single('image'), async (req, res) => {
   try {
@@ -111,6 +95,8 @@ app.post('/upload', upload.single('image'), async (req, res) => {
       res.status(500).json({ message: 'Error uploading image' });
   }
 });
+
+
 
 
 // get images by email

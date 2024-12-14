@@ -3,29 +3,22 @@ const USERMODEL = require("../models/userModel")
 
 const newProduct = async (req, res) => {
   try {
-    const ownerId = await USERMODEL.findById(req.user._id)
-    const { name, description, price,location, isSale, couponCode,discountPercentage, stock, category, subCategory, featured, storeName, rating, numReviews } = req.body;
+    const owner = await USERMODEL.findById(req.user._id)
+    const { name, description, price,location,images, isSale, couponCode,discountPercentage, stock, category, subCategory, featured, storeName, rating, numReviews } = req.body;
+    if (!req.files || req.files.length === 0) {
+      return res.status(200).json({ message: "Images are required." });
+    }
+
+    const imagePaths = req.files.map((file) => `/productimgs/${file.filename}`); // Construct URL
+
     const newProduct = new Products({
-      sellerId:ownerId._id,
-      name,
-      description,
-      price,
-      stock,
-      category,
-      location,
-      subCategory,
-      featured,
-      storeName,
-      rating,
-      numReviews,
-      isSale,
-      couponCode,
-      discountPercentage
+      sellerId:owner._id,name,description,price,stock,category,location,subCategory,featured,storeName,rating,numReviews,isSale,couponCode,discountPercentage,images:imagePaths
     });
+
     await newProduct.save()
     return res.status(200).json({ msg: "Product is listed" })
   } catch (error) {
-    return res.status(400).json({ err: error.message })
+    return res.status(200).json({ err: error.message })
   }
 }
 

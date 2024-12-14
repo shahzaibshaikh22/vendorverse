@@ -5,17 +5,17 @@ import { IoGrid } from "react-icons/io5";
 import { FaChevronDown } from 'react-icons/fa';
 
 
-const SortingBar = ({ filteredProducts, handleListView, handleGridView }) => {
+const SortingBar = ({ products, handleListView,HighToLow,LowToHigh,alphabeticProducts,oldestProducts,newestProducts, handleGridView }) => {
   const { mode } = useSelector((state) => state.auth)
-  const [showDropdown, setShowDropdown] = useState(false)
+  const [showDropdown, setShowDropdown] = useState(false)  
 
-  
+
 
   return (
     <div className='flex w-full items-center gap-6  px-4 py-2'>
       <div className='w-full  flex flex-1 items-center justify-between'>
         <div>
-          <span className={`${mode === "dark" ? 'bg-darkfg text-lightbg' : 'bg-lightfg text-darkfg'}`}>{filteredProducts.length} items found</span>
+          <span className={`${mode === "dark" ? 'bg-darkfg text-lightbg' : 'bg-lightfg text-darkfg'}`}>{products.length} items found</span>
         </div>
 
       </div>
@@ -29,17 +29,16 @@ const SortingBar = ({ filteredProducts, handleListView, handleGridView }) => {
           {showDropdown && (
             <div className={`w-full  flex rounded-md flex-col gap-2 options absolute z-10 left-0 -bottom-[230px] ${mode === "dark" ? 'bg-darkufg' : 'bg-lightfg'} drop-shadow-md`}>
               <div className={`divider w-full h-[1px] ${mode === "dark" ? 'bg-darkfg' : 'bg-gray-200'} `}></div>
-              <span className={`px-2 cursor-pointer  py-1 text-sm ${mode === "dark" ? 'hover:bg-darkfg hover:text-white' : 'hover:bg-lightbg hover:text-darkbg'}`}>price high to low</span>
+              <span onClick={HighToLow} className={`px-2 cursor-pointer  py-1 text-sm ${mode === "dark" ? 'hover:bg-darkfg hover:text-white' : 'hover:bg-lightbg hover:text-darkbg'}`}>price high to low</span>
               <div className={`divider w-full h-[1px] ${mode === "dark" ? 'bg-darkfg' : 'bg-gray-200'} `}></div>
-              <span className={`px-2 cursor-pointer  py-1 text-sm ${mode === "dark" ? 'hover:bg-darkfg hover:text-white' : 'hover:bg-lightbg hover:text-darkbg'}`}>price low to high </span>
+              <span onClick={LowToHigh}  className={`px-2 cursor-pointer  py-1 text-sm ${mode === "dark" ? 'hover:bg-darkfg hover:text-white' : 'hover:bg-lightbg hover:text-darkbg'}`}>price low to high </span>
               <div className={`divider w-full h-[1px] ${mode === "dark" ? 'bg-darkfg' : 'bg-gray-200'} `}></div>
-              <span className={`px-2 cursor-pointer  py-1 text-sm ${mode === "dark" ? 'hover:bg-darkfg hover:text-white' : 'hover:bg-lightbg hover:text-darkbg'}`}>sort by alphabetic</span>
+              <span onClick={alphabeticProducts} className={`px-2 cursor-pointer  py-1 text-sm ${mode === "dark" ? 'hover:bg-darkfg hover:text-white' : 'hover:bg-lightbg hover:text-darkbg'}`}>sort by alphabetic</span>
               <div className={`divider w-full h-[1px] ${mode === "dark" ? 'bg-darkfg' : 'bg-gray-200'} `}></div>
-              <span className={`px-2 cursor-pointer  py-1 text-sm ${mode === "dark" ? 'hover:bg-darkfg hover:text-white' : 'hover:bg-lightbg hover:text-darkbg'}`}>oldest</span>
+              <span onClick={oldestProducts} className={`px-2 cursor-pointer  py-1 text-sm ${mode === "dark" ? 'hover:bg-darkfg hover:text-white' : 'hover:bg-lightbg hover:text-darkbg'}`}>oldest</span>
               <div className={`divider w-full h-[1px] ${mode === "dark" ? 'bg-darkfg' : 'bg-gray-200'} `}></div>
-              <span className={`px-2 cursor-pointer  py-1 text-sm ${mode === "dark" ? 'hover:bg-darkfg hover:text-white' : 'hover:bg-lightbg hover:text-darkbg'}`}>newest</span>
+              <span onClick={newestProducts} className={`px-2 cursor-pointer  py-1 text-sm ${mode === "dark" ? 'hover:bg-darkfg hover:text-white' : 'hover:bg-lightbg hover:text-darkbg'}`}>newest</span>
               <div className={`divider w-full h-[1px] ${mode === "dark" ? 'bg-darkfg' : 'bg-gray-200'} `}></div>
-
             </div>
           )}
         </div>

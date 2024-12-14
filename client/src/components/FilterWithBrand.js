@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { products } from '../Dummydata'
 
-const FilterWithBrand = ({selectedBrands, setSelectedBrands}) => {
+const FilterWithBrand = ({selectedBrands, data, setSelectedBrands}) => {
+    
     const { mode } = useSelector((state) => state.auth)
     const [isChecked, setIsChecked] = useState(false);
 
-    const brands = [...new Set(products.map(product => product.brand))];
+    let brands;
+   if(data){
+    brands = [...new Set(data.map(product => product.storeName))];    
+   }
 
     
 
@@ -24,8 +27,9 @@ const FilterWithBrand = ({selectedBrands, setSelectedBrands}) => {
             <h3 className='text-xl'>Brand</h3>
             <div className={`divider w-full h-[1px] ${mode === "dark" ? 'bg-darkufg' : 'bg-gray-200'} `}></div>
             <div className='flex flex-col gap-1'>
-                {brands.map(brand => (
-                    <label key={brand} className=" flex items-center gap-2">
+                {data && brands.map((brand,index)=>{
+                    return(
+                        <label key={index} className=" flex items-center gap-2">
                         <input
                             type="checkbox"
                             checked={selectedBrands.includes(brand)}
@@ -35,7 +39,8 @@ const FilterWithBrand = ({selectedBrands, setSelectedBrands}) => {
                         <div className="w-5 h-5 border-2 border-gray-300 rounded-sm peer-checked:bg-emerald-500 peer-checked:border-emerald-500 peer-checked:before:content-['✓'] peer-checked:before:text-white peer-checked:before:flex peer-checked:before:justify-center peer-checked:before:items-center peer-checked:before:font-bold peer-checked:before:text-sm peer-hover:border-emerald-500"></div>
                         {brand}
                     </label>
-                ))}
+                    )
+                })}
             </div>
         </section>
     )

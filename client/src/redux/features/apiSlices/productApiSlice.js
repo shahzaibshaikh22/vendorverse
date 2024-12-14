@@ -11,6 +11,14 @@ export const productApiSlice = apiSlice.injectEndpoints({
                 method:"GET"
             })
         }),
+        addProduct: builder.mutation({
+            query: (formData) => ({
+              url: `${product_url}/add`,
+              method: "POST",
+              body: formData, // Pass FormData directly
+            }),
+            invalidatesTags: ["products"], // Invalidate cache for products
+          }),
         fetchCartItems: builder.query({
             query:(userId)=>({
                 url:`${cart_url}/items/${userId}`,
@@ -89,4 +97,4 @@ export const productApiSlice = apiSlice.injectEndpoints({
     })
 })
 
-export const { useFetchAllProductsQuery, useGetSingleProductQuery, useFetchCartItemsQuery, useAddProductToCartMutation, useIncreaseQuantityMutation, useDecreaseQuantityMutation, useDeleteCartItemMutation, useGetTotalPriceQuery, useAddToWishlistMutation, useDeleteWishistItemMutation, useFetchWishlistItemsQuery } = productApiSlice;
+export const { useAddProductMutation,  useFetchAllProductsQuery, useGetSingleProductQuery, useFetchCartItemsQuery, useAddProductToCartMutation, useIncreaseQuantityMutation, useDecreaseQuantityMutation, useDeleteCartItemMutation, useGetTotalPriceQuery, useAddToWishlistMutation, useDeleteWishistItemMutation, useFetchWishlistItemsQuery } = productApiSlice;

@@ -1,5 +1,6 @@
 import { apiSlice } from "./apiSlice";
 let user_url = 'http://localhost:5000/api/v1/user'
+let chat_url = 'http://localhost:5000/api/v1/chats'
 export const userApiSclice = apiSlice.injectEndpoints({
     endpoints: (builder) =>({
         userRegister: builder.mutation({
@@ -41,8 +42,9 @@ export const userApiSclice = apiSlice.injectEndpoints({
                 url:`${user_url}/profile`,
                 headers:{
                     Authorization: `Bearer ${token}`
-                }
-            })
+                },
+            }),
+            providesTags: ["usermodels"], 
         }),
         userImage:builder.query({
             query:(email)=>({
@@ -70,8 +72,14 @@ export const userApiSclice = apiSlice.injectEndpoints({
                 method:"POST",
             })
         }),
+        getChats:builder.query({
+            query:(userId)=>({
+                url:`${chat_url}/${userId}`,
+                method:"GET",
+            })
+        }),
 
     })
 })
 
-export const { useUserRegisterMutation, useResendOtpMutation, useLoginMutation, useVerifyOtpMutation, useLogoutMutation,useSwitchUserRoleMutation, useSwitchAdminRoleMutation, useUserImageQuery, useProfileQuery, useUpdateProfileMutation } = userApiSclice;
+export const { useGetChatsQuery,useUserRegisterMutation, useResendOtpMutation, useLoginMutation, useVerifyOtpMutation, useLogoutMutation,useSwitchUserRoleMutation, useSwitchAdminRoleMutation, useUserImageQuery, useProfileQuery, useUpdateProfileMutation } = userApiSclice;

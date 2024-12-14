@@ -18,7 +18,7 @@ const MainHome = () => {
   const mode = useSelector((state) => state.auth.mode);
   // fetch all products
   const { data, isLoading } = useFetchAllProductsQuery()
-  console.log(data);
+
 
   if (isLoading) {
     return (
@@ -31,11 +31,6 @@ const MainHome = () => {
 
 
 
-
-
-
-
-
   return (
     <>
       <main className={`w-full px-4 ${mode === "dark" ? 'bg-darkbg' : 'bg-lightbg'}`}>
@@ -45,7 +40,7 @@ const MainHome = () => {
               <h3 className='text-xl px-4'>Categories</h3>
               {/* <Autocomplete suggestions={categories}/> */}
               <ul className='flex w-full flex-col'>
-                {categories.length >0 && categories.map((elem) => {
+                {categories.length > 0 && categories.map((elem) => {
                   return (
                     <li key={elem} className='flex cli w-full p-1 text-md items-center justify-between gap-2 px-4 hover:bg-gray-200 hover:text-emerald-700'>
                       <div className='flex gap-2 items-center'><span className='text-sm'><FaUser /></span> <span>{elem}</span></div>

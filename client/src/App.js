@@ -32,6 +32,9 @@ import Checkout from './userlayout/Checkout'
 import AddProduct from './adminlayout/adminPages/AddProduct'
 import ManageUsers from './adminlayout/adminPages/ManageUsers'
 import SellersRequest from './adminlayout/adminPages/SellersRequest'
+import Chat from './pages/Chat'
+import Chats from './userlayout/Chats'
+import TestChat from "./components/TestChat"
 
 const App = () => {
   return (
@@ -51,6 +54,7 @@ const App = () => {
           <Route path="emptycart" element={<Emptycart />} />
           <Route path="waiting" element={<SellerWaiting />} />
           <Route path="filter/:c" element={<FilterCategory />} />
+          {/* <Route path="chat/:sellerId" element={<Chat />} /> */}
           <Route element={<CartProtected />}>
           <Route element={<Wishlist />} path="wishlist" exact />
           <Route element={<Cart />} path="cart" exact />
@@ -66,6 +70,7 @@ const App = () => {
             <Route path="history" element={<UserOrderHistory />} />
             <Route path="help" element={<DashboardOverview />} />
             <Route path="checkout" element={<Checkout />} />
+            <Route path="mychats" element={<TestChat />} />
           </Route>
       {/* user dashboard routes */}
 

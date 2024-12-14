@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const productSlice = createSlice({
-    name: "authProducts",
+    name: 'authProducts',
     initialState:{
-        products: [],
+        products:[],
         isLoading:true,
     },
     reducers: {
@@ -14,5 +14,5 @@ const productSlice = createSlice({
     }
 })
 
-export const {getProducts } = productSlice.actions
+export const {getProducts} = productSlice.actions
 export default productSlice.reducer

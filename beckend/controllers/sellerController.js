@@ -5,7 +5,7 @@ const asyncHandler = require("express-async-handler")
 const bcrypt = require("bcryptjs")
 
 
-
+// seller request registrtion
 const registerSeller = asyncHandler(async (req,res)=>{
    try {
     const { email,username,storeName,country,state,city,phone } = req.body;
@@ -38,6 +38,7 @@ const registerSeller = asyncHandler(async (req,res)=>{
        return res.json({err:error.message})
    }
 })
+
 
 
 

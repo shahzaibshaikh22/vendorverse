@@ -7,8 +7,9 @@ export const sellerApiSlice = apiSlice.injectEndpoints({
         query:(data)=>({
             url:`${seller_url}/register`,
             method:'POST',
-            body:data
-        })
+            body:data,
+        }),
+        invalidatesTags: ['sellerrequests']
        }) 
     })
 })

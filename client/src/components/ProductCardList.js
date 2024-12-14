@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 
 const ProductCardList = ({ product }) => {
   const mode = useSelector((state) => state.auth.mode)
+
+  
   return (
     <div className='w-full relative  flex-col justify-between'>
         <span className='absolute text-2xl right-4 top-0 cursor-pointer text-md text-emerald-500'><CiHeart/></span>

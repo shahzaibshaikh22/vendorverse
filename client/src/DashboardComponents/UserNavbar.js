@@ -4,7 +4,7 @@ import { FaHome, FaUser, FaCog, FaShoppingCart, FaChevronRight, FaHeart, FaShopp
 import { GoHeart } from "react-icons/go";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-
+import { IoChatboxEllipses } from "react-icons/io5";
 const UserNavbar = () => {
   const [isOpen, setIsOpen] = useState(true);
 
@@ -22,6 +22,7 @@ const UserNavbar = () => {
     { path: "/wishlist", label: "Wishlist",icon:<FaHeart/>  },
     { path: "/user/orders", label: "Orders",icon:<FaShoppingBag/>  },
     { path: "/user/history", label: "Orders History",icon:<FaShoppingBag/>  },
+    { path: "/user/mychats", label: "Messages",icon:<IoChatboxEllipses/>  },
   ];
 
 const { mode } = useSelector(((state)=>state.auth))
@@ -48,7 +49,7 @@ const { mode } = useSelector(((state)=>state.auth))
               return(
                 
                 <Link 
-                 Key={label}
+                 Key={path}
                  to={path}
                  className={`${ location.pathname === path
                   ? "bg-emerald-500 text-white" 
