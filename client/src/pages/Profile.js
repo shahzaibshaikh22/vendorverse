@@ -156,9 +156,9 @@ const handleSubmit = async (e)=>{
               </div>
           </form>
         </div>
-        <div className='w-full h-full'>
+        {/* <div className='w-full h-full'>
             <UserMap/>
-        </div>
+        </div> */}
       </div>
       <ToastContainer />
     </section>

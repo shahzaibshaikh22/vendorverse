@@ -39,6 +39,75 @@ const USERMODEL = require("../models/userModel")
 //         res.status(500).send('Server error');
 //     }
 // }
+// const addToCart = async (req, res) => {
+//   const { productId, quantity, sellerId } = req.body;
+
+//   try {
+//     let { userId } = req.body; // Frontend should pass userId
+//     let cart = await Cart.findOne({ userId });
+
+//     // If cart doesn't exist, create a new cart
+//     if (!cart) {
+//       cart = new Cart({
+//         userId: req.user.id,
+//         sellers: [
+//           {
+//             sellerId,
+//             items: [{ productId, quantity }], // Add the product with initial quantity
+//           },
+//         ],
+//       });
+//     } else {
+//       // Check if the seller already exists in the cart
+//       const sellerIndex = cart.sellers.findIndex(
+//         (seller) => seller.sellerId.toString() === sellerId
+//       );
+
+//       if (sellerIndex > -1) {
+//         // Seller already exists, check for the product in the seller's items
+//         const productIndex = cart.sellers[sellerIndex].items.findIndex(
+//           (item) => item.productId.toString() === productId
+//         );
+
+//         if (productIndex > -1) {
+//           // If the product is already in the cart, update quantity
+//           cart.sellers[sellerIndex].items[productIndex].quantity += quantity; // Update quantity
+//         } else {
+//           // Product doesn't exist, add it to the seller's items
+//           cart.sellers[sellerIndex].items.push({ productId, quantity });
+//         }
+//       } else {
+//         // Seller doesn't exist, add a new seller with the product
+//         cart.sellers.push({
+//           sellerId,
+//           items: [{ productId, quantity }],
+//         });
+//       }
+//     }
+
+//     // Remove the product from the wishlist
+//     const wishProduct = await WishList.findOne({ userId });
+//     if (wishProduct) {
+//       const productIndex = wishProduct.items.findIndex(
+//         (item) => item.productId.toString() === productId
+//       );
+
+//       if (productIndex > -1) {
+//         // Remove the product from the wishlist
+//         wishProduct.items.splice(productIndex, 1);
+//         await wishProduct.save();
+//       }
+//     }
+
+//     // Save the updated cart
+//     await cart.save();
+//     res.status(200).json({ message: "Product added to cart and removed from wishlist.", cart });
+//   } catch (err) {
+//     console.error(err.message);
+//     res.status(500).json({ message: "Server error" });
+//   }
+// };
+
 const addToCart = async (req, res) => {
   const { productId, quantity, sellerId } = req.body;
 
@@ -46,8 +115,8 @@ const addToCart = async (req, res) => {
     let { userId } = req.body; // Frontend should pass userId
     let cart = await Cart.findOne({ userId });
 
-    // If cart doesn't exist, create a new cart
     if (!cart) {
+      // Cart doesn't exist, create a new cart
       cart = new Cart({
         userId: req.user.id,
         sellers: [
@@ -64,14 +133,16 @@ const addToCart = async (req, res) => {
       );
 
       if (sellerIndex > -1) {
-        // Seller already exists, check for the product in the seller's items
+        // Seller exists, check for the product in the seller's items
         const productIndex = cart.sellers[sellerIndex].items.findIndex(
           (item) => item.productId.toString() === productId
         );
 
         if (productIndex > -1) {
-          // If the product is already in the cart, update quantity
-          cart.sellers[sellerIndex].items[productIndex].quantity += quantity; // Update quantity
+          // If the product is already in the cart, send a message
+          return res
+            .status(400)
+            .json({ message: "This product is already in the cart." });
         } else {
           // Product doesn't exist, add it to the seller's items
           cart.sellers[sellerIndex].items.push({ productId, quantity });
@@ -101,12 +172,18 @@ const addToCart = async (req, res) => {
 
     // Save the updated cart
     await cart.save();
-    res.status(200).json({ message: "Product added to cart and removed from wishlist.", cart });
+    res
+      .status(200)
+      .json({
+        message: "Product added to cart and removed from wishlist.",
+        cart,
+      });
   } catch (err) {
     console.error(err.message);
     res.status(500).json({ message: "Server error" });
   }
 };
+
 
 
 // get the user's cart items
@@ -269,31 +346,37 @@ const decreaseQuantity = async (req, res) => {
 
     // Product search karke quantity decrease karna
     let productFound = false;
+    let minimumQuantityReached = false;
 
-    cart.sellers.forEach(seller => {
-      seller.items = seller.items.filter(item => {
+    cart.sellers.forEach((seller) => {
+      seller.items = seller.items.map((item) => {
         if (item.productId.toString() === productId) {
           if (item.quantity > 1) {
             item.quantity -= 1; // Decrease quantity
             productFound = true;
-            return true;
           } else {
-            productFound = true; // Remove item if quantity <= 1
-            return false;
+            // If quantity is already 1, do not decrease further
+            minimumQuantityReached = true;
           }
         }
-        return true;
+        return item; // Return the item even if quantity is not decreased
       });
     });
 
-    if (!productFound) {
+    if (!productFound && !minimumQuantityReached) {
       return res.status(404).json({ error: "Product not found in cart." });
+    }
+
+    if (minimumQuantityReached) {
+      return res.status(200).json({
+        err: "Minimum quantity is 1. Quantity cannot be decreased further.",
+      });
     }
 
     // Total price update karna
     let totalPrice = 0;
-    cart.sellers.forEach(seller => {
-      seller.items.forEach(item => {
+    cart.sellers.forEach((seller) => {
+      seller.items.forEach((item) => {
         totalPrice += (item.productId.price || 0) * item.quantity;
       });
     });
@@ -302,12 +385,15 @@ const decreaseQuantity = async (req, res) => {
 
     await cart.save();
 
-    res.status(200).json({ message: "Quantity decreased successfully!", cart });
+    res
+      .status(200)
+      .json({ message: "Quantity decreased successfully!", cart });
   } catch (err) {
     console.error(err.message);
     res.status(500).json({ error: "Server error" });
   }
 };
+
 
 // decrease quantity of product in user cart
 

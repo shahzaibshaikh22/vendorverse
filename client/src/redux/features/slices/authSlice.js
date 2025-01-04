@@ -10,8 +10,8 @@ const authSlice = createSlice({
     email:localStorage.getItem("email") ? JSON.parse(localStorage.getItem("email")): "",
     mode:"dark",
     isLoading:false,
-    lenghts: localStorage.getItem('Length') ? JSON.parse(localStorage.getItem('Length')) : null,
-    wishLength: localStorage.getItem('wishLength') ? JSON.parse(localStorage.getItem('wishLength')) : null
+    lenghts: localStorage.getItem('Length') ? localStorage.getItem('Length') : 0,
+    wishLength: localStorage.getItem('wishLength') ? localStorage.getItem('wishLength') : 0
   },
   reducers: {
     registerUser: (state, action) => {

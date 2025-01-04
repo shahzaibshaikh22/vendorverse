@@ -2,17 +2,16 @@ import { useDecreaseQuantityMutation, useDeleteCartItemMutation, useGetSinglePro
 import { useSelector } from 'react-redux'
 import { FaMinus, FaPlus, FaTrash } from 'react-icons/fa'
 import Loading from "./Loading"
+import { loginUser } from '../redux/features/slices/authSlice'
 
 const SingleCartItem = ({ item }) => {
-  console.log(item.productId._id);
   
-
-
-
   const { mode, user } = useSelector((state) => state.auth)
 
 // mutation for fetching single product in the cart
   const { data, isLoading } = useGetSingleProductQuery(item.productId._id)
+  console.log(data);
+  
 
 
   // increase product quantity
@@ -34,6 +33,7 @@ const SingleCartItem = ({ item }) => {
   const [decreaseQuantity] = useDecreaseQuantityMutation()
   const handleDecreaseQuantity = async (productId) => {
     const res  = await  decreaseQuantity({ productId, userId})
+    
     if(res.data.err){
     alert(res.data.err)
     }

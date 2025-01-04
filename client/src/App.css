@@ -1,4 +1,9 @@
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 
 
 ::-webkit-scrollbar{
@@ -348,8 +353,8 @@ input{
 /* stepper */
 
 
-
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.chatInput:focus{
+  outline: none!important;
+  border: none!important;
+  box-shadow: none; 
+}

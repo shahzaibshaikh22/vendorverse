@@ -180,64 +180,8 @@ const deleteChat = async (req, res) => {
   }
 };
 
-// const sendMessage = async (req, res) => {
-//   const { senderId, receiverId, message } = req.body;
-
-//   try {
-//     let conversation = await Conversation.findOne({
-//       participants: { $all: [senderId, receiverId] },
-//     });
-
-//     if (!conversation) {
-//       // New conversation setup
-//       conversation = new Conversation({
-//         participants: [senderId, receiverId],
-//         messages: [
-//           {
-//             senderId,
-//             receiverId,
-//             message,
-//             timestamp: new Date(),
-//           },
-//         ],
-//         deletedAt: {}, // Initialize empty map
-//       });
-
-//       await conversation.save();
-
-//       return res.status(200).json({
-//         message: "Conversation created and message sent successfully",
-//         conversation,
-//       });
-//     }
-
-//     // Add new message
-//     const newMessage = {
-//       senderId,
-//       receiverId,
-//       message,
-//       timestamp: new Date(),
-//     };
-
-//     conversation.messages.push(newMessage);
-
-//     // Reset `deletedAt` only for the sender (receiver's deletedAt remains as is)
-//     conversation.deletedAt.delete(senderId);
-
-//     await conversation.save();
-
-//     res.status(200).json({
-//       message: "Message sent successfully",
-//       conversation,
-//     });
-//   } catch (error) {
-//     console.error("Error sending message:", error);
-//     res.status(500).json({ message: "Failed to send message" });
-//   }
-// };
 const sendMessage = async (req, res) => {
   const { senderId, receiverId, message } = req.body;
-  const file = req.file; // File from multer
 
   try {
     let conversation = await Conversation.findOne({
@@ -253,7 +197,6 @@ const sendMessage = async (req, res) => {
             senderId,
             receiverId,
             message,
-            file: file ? `${file.filename}` : null, // Save file path
             timestamp: new Date(),
           },
         ],
@@ -273,13 +216,12 @@ const sendMessage = async (req, res) => {
       senderId,
       receiverId,
       message,
-      file: file ? `${file.filename}` : null, // Save file path
       timestamp: new Date(),
     };
 
     conversation.messages.push(newMessage);
 
-    // Reset `deletedAt` only for the sender
+    // Reset `deletedAt` only for the sender (receiver's deletedAt remains as is)
     conversation.deletedAt.delete(senderId);
 
     await conversation.save();
@@ -293,6 +235,138 @@ const sendMessage = async (req, res) => {
     res.status(500).json({ message: "Failed to send message" });
   }
 };
+
+
+  // const sendMessage = async (req, res) => {
+  //   const { senderId, receiverId, message } = req.body;
+  //   const file = req.file; // File from multer
+
+  //   try {
+  //     let conversation = await Conversation.findOne({
+  //       participants: { $all: [senderId, receiverId] },
+  //     });
+
+  //     if (!conversation) {
+  //       // New conversation setup
+  //       conversation = new Conversation({
+  //         participants: [senderId, receiverId],
+  //         messages: [
+  //           {
+  //             senderId,
+  //             receiverId,
+  //             message,
+  //             file: file ? `${file.filename}` : null, // Save file path
+  //             timestamp: new Date(),
+  //           },
+  //         ],
+  //         deletedAt: {}, // Initialize empty map
+  //       });
+
+  //       await conversation.save();
+
+  //       return res.status(200).json({
+  //         message: "Conversation created and message sent successfully",
+  //         conversation,
+  //       });
+  //     }
+
+  //     // Add new message
+  //     const newMessage = {
+  //       senderId,
+  //       receiverId,
+  //       message,
+  //       file: file ? `${file.filename}` : null, // Save file path
+  //       timestamp: new Date(),
+  //     };
+  //       // Emit the message to all connected clients
+  //       if (req.io) {
+  //         req.io.emit("receiveMessage", newMessage);
+  //       } else {
+  //         console.error("Socket.IO instance not found on req");
+  //         return res.status(500).json({ message: "Socket.IO instance not found" });
+  //       }
+
+
+  //     conversation.messages.push(newMessage);
+
+  //     // Reset `deletedAt` only for the sender
+  //     conversation.deletedAt.delete(senderId);
+
+  //     await conversation.save();
+
+  //     res.status(200).json({
+  //       message: "Message sent successfully",
+  //       conversation,
+  //     });
+  //   } catch (error) {
+  //     console.error("Error sending message:", error);
+  //     res.status(500).json({ message: "Failed to send message" });
+  //   }
+  // };
+
+  // const sendMessage = async (req, res) => {
+  //   const { senderId, receiverId, message } = req.body;
+  //   const file = req.file;
+  
+  //   try {
+  //     // Debug log
+  //     console.log('Socket IO instance:', req.io);
+  
+  //     let conversation = await Conversation.findOne({
+  //       participants: { $all: [senderId, receiverId] },
+  //     });
+  
+  //     const newMessage = {
+  //       senderId,
+  //       receiverId,
+  //       message,
+  //       file: file ? `${file.filename}` : null,
+  //       timestamp: new Date(),
+  //     };
+  
+  //     if (!conversation) {
+  //       conversation = new Conversation({
+  //         participants: [senderId, receiverId],
+  //         messages: [newMessage],
+  //         deletedAt: {},
+  //       });
+  //     } else {
+  //       conversation.messages.push(newMessage);
+  //       conversation.deletedAt.delete(senderId);
+  //     }
+  
+  //     await conversation.save();
+  
+  //     // Socket.IO emission with error handling
+  //     if (req.io) {
+  //       try {
+  //         req.io.emit('newMessage', {
+  //           conversationId: conversation._id,
+  //           message: newMessage
+  //         });
+  //         console.log('Message emitted via socket');
+  //       } catch (socketError) {
+  //         console.error('Socket emission error:', socketError);
+  //       }
+  //     } else {
+  //       console.warn('Socket.IO instance not available');
+  //     }
+  
+  //     res.status(200).json({
+  //       success: true,
+  //       message: "Message sent successfully",
+  //       conversation,
+  //     });
+  
+  //   } catch (error) {
+  //     console.error("Error in sendMessage:", error);
+  //     res.status(500).json({ 
+  //       success: false, 
+  //       message: "Failed to send message",
+  //       error: error.message 
+  //     });
+  //   }
+  // };
 
 
 // const sendMessage = async (req, res) => {

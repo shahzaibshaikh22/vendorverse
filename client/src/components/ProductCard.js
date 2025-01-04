@@ -19,6 +19,7 @@ const ProductCard = ({ product }) => {
   const [adToWishlist] = useAddToWishlistMutation()
 
   const navigate = useNavigate()
+  
 
   const handleAddToCart = async (product) => {
     const { data } = await addToCart({ productId:product._id, sellerId:product.sellerId, userId })

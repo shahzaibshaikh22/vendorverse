@@ -1,22 +1,31 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import SingleCartItem from "../components/SingleCartItem";
 import Loading from "../components/Loading";
 import { useFetchCartItemsQuery } from "../redux/features/apiSlices/productApiSlice";
 import { setCartLength } from "../redux/features/slices/authSlice";
 import { Link } from "react-router-dom";
+import { loadStripe } from '@stripe/stripe-js';
+
+
+
 
 const Cart = () => {
   const { mode, user } = useSelector((state) => state.auth);
+  // const [clientSecret, setClientSecret] = useState('');
   const dispatch = useDispatch();
+  let userId;
+  if(user){
+     userId = user._id;
+  }
 
-  let userId = user?._id;
 
   // Fetching user cart
   const { data: userCart, isLoading: cartLoading } = useFetchCartItemsQuery(userId);
 
   let cartLength;
   useEffect(() => {
+    
     if (userCart) {
       // Update cart length in Redux
      if(userCart.cart){
@@ -25,20 +34,55 @@ const Cart = () => {
         0
       );
      }
+     if(userCart.message === "Cart not found for the given user."){
+      dispatch(setCartLength(0))
+     }
       dispatch(setCartLength(cartLength));
     }
-  }, [userCart]);
+  }, [userCart,dispatch]);
 
-  if (cartLoading) {
-    return <Loading />;
-  }
+let totalPrice;
 
-  // Calculate additional costs
   const shippingCost = 100;
   const taxRate = 0.05;
   const subTotal = userCart?.cart?.totalPrice || 0;
   const taxes = subTotal * taxRate;
-  const totalPrice = subTotal + taxes + shippingCost;
+   totalPrice = subTotal + taxes + shippingCost;
+
+   const makePayment = async()=>{
+    try {
+      const stripe = await loadStripe('pk_test_51MtGm0GaYMqjC0SJRu8BneBx94emS6cVIWsLFwE7cww3AsWNSsNRmBfmqDdrKhJRdeacx0ubuvJGnenmFyzv7jXA005Dgaht4u')
+      const body ={
+        products:userCart
+      }
+      const headers = {
+        "Content-Type": "application/json"
+      }
+      const response = await fetch("http://localhost:5000/api/create-checkout-session",{
+        method:"POST",
+        headers:headers,
+        body:JSON.stringify(body)
+      })
+      const session = await response.json();
+
+      const result = stripe.redirectToCheckout({
+        sessionId:session.id
+      })
+      if(result.error){
+        alert(result.error)
+      }
+    } catch (error) {
+      console.log(error.message);
+      
+    }
+   }
+ if (cartLoading) {
+    return (
+      <Loading />
+    )
+  }
+
+
 
   return (
     <section
@@ -107,11 +151,21 @@ const Cart = () => {
                 </div>
               </div>
               <div className="w-full p-4 bg-emerald-500 rounded-full text-center">
-                <Link to="/user/checkout" className="w-full text-white font-semibold">
+                {/* <Link to="/user/checkout" className="w-full text-white font-semibold">
                   Checkout
-                </Link>
+                </Link> */}
+                <button onClick={makePayment} className="w-full text-white font-semibold">
+                  Checkout
+                </button>
+                
               </div>
+               {/* <Elements stripe={stripePromise}>
+                  {clientSecret && <CheckoutForm clientSecret={clientSecret} />}
+                </Elements> */}
             </div>
+          </div>
+          <div>
+         
           </div>
         </div>
       ) : (

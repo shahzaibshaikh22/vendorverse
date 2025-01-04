@@ -1,179 +1,80 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+import axios from "axios";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
 const Checkout = () => {
-    const { mode } = useSelector((state)=>state.auth)
+  const { mode } = useSelector((state) => state.auth);
+  const stripe = useStripe();
+  const elements = useElements();
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const stripePromise = loadStripe('pk_test_51MtGm0GaYMqjC0SJRu8BneBx94emS6cVIWsLFwE7cww3AsWNSsNRmBfmqDdrKhJRdeacx0ubuvJGnenmFyzv7jXA005Dgaht4u');
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+
+    if (!stripe || !elements) {
+      setMessage("Stripe is not properly loaded.");
+      setLoading(false);
+      return;
+    }
+
+    const { data } = await axios.post("http://localhost:5000/create-payment-intent", {
+      amount: 4000, // Amount in cents ($40)
+    });
+
+    const clientSecret = data.clientSecret;
+
+    const cardElement = elements.getElement(CardElement);
+    const { paymentIntent, error } = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: cardElement,
+      },
+    });
+
+    if (error) {
+      setMessage(error.message);
+    } else if (paymentIntent.status === "succeeded") {
+      setMessage("Payment Successful!");
+    }
+
+    setLoading(false);
+  };
+
   return (
+    <Elements stripe={stripePromise}>
     <div className={`min-h-screen pt-20 ${mode === "dark" ? 'bg-darkfg' : 'bg-lightbg'} flex justify-center items-center`}>
-      <div className={`max-w-6xl w-full ${mode === "dark" ? 'bg-darkbg text-lightgray' : 'bg-lightfg text-darkufg'} shadow-lg rounded-lg p-6 grid grid-cols-1 md:grid-cols-2 gap-6`}>
-        {/* Shipping Information */}
-        <div>
-          <h2 className="text-xl font-semibold mb-4">Checkout</h2>
-
-          {/* Shipping Method */}
-          <div className="mb-6">
-            <label className="flex items-center gap-4">
-              <input
-                type="radio"
-                name="shipping-method"
-                className="h-4 w-4 text-emerald-500 focus:ring-emerald-500"
-                defaultChecked
-              />
-              <span>Delivery</span>
-            </label>
-            <label className="flex items-center gap-4 mt-2">
-              <input
-                type="radio"
-                name="shipping-method"
-                className="h-4 w-4 text-emerald-500 focus:ring-emerald-500"
-              />
-              <span>Pick up</span>
-            </label>
-          </div>
-
-          {/* Shipping Form */}
-          <form className="space-y-4">
-            <div>
-              <label className={`block text-sm font-medium ${mode === "dark" ? 'text-lightgray' :'text-darkufg'}`}>
-                Full name
-              </label>
-              <input
-                type="text"
-                placeholder="Enter full name"
-                className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 ${mode ==="dark" ? 'bg-darkfg placeholder:text-lightfg text-lightfg' : 'bg-lightbg placeholder:text-darkfg text-darkfg'}`}
-              />
-            </div>
-            <div>
-              <label className={`block text-sm font-medium ${mode === "dark" ? 'text-lightgray' :'text-darkufg'}`}>
-                Email address
-              </label>
-              <input
-                type="email"
-                placeholder="Enter email address"
-                className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 ${mode ==="dark" ? 'bg-darkfg placeholder:text-lightfg text-lightfg' : 'bg-lightbg placeholder:text-darkfg text-darkfg'}`}
-              />
-            </div>
-            <div>
-              <label className={`block text-sm font-medium ${mode === "dark" ? 'text-lightgray' :'text-darkufg'}`}>
-                Phone number
-              </label>
-              <input
-                type="text"
-                placeholder="Enter phone number"
-                className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 ${mode ==="dark" ? 'bg-darkfg placeholder:text-lightfg text-lightfg' : 'bg-lightbg placeholder:text-darkfg text-darkfg'}`}
-              />
-            </div>
-            <div>
-              <label className={`block text-sm font-medium ${mode === "dark" ? 'text-lightgray' :'text-darkufg'}`}>
-                Country
-              </label>
-              <select className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 ${mode ==="dark" ? 'bg-darkfg placeholder:text-lightfg text-lightfg' : 'bg-lightbg placeholder:text-darkfg text-darkfg'}`}>
-                <option>Choose country</option>
-                <option>Pakistan</option>
-                <option>USA</option>
-              </select>
-            </div>
-            <div className="grid grid-cols-3 gap-2">
-              <div>
-                <label className={`block text-sm font-medium ${mode === "dark" ? 'text-lightgray' :'text-darkufg'}`}>
-                  City
-                </label>
-                <input
-                  type="text"
-                  placeholder="Enter city"
-                  className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 ${mode ==="dark" ? 'bg-darkfg placeholder:text-lightfg text-lightfg' : 'bg-lightbg placeholder:text-darkfg text-darkfg'}`}
-                />
-              </div>
-              <div>
-                <label className={`block text-sm font-medium ${mode === "dark" ? 'text-lightgray' :'text-darkufg'}`}>
-                  State
-                </label>
-                <input
-                  type="text"
-                  placeholder="Enter state"
-                  className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 ${mode ==="dark" ? 'bg-darkfg placeholder:text-lightfg text-lightfg' : 'bg-lightbg placeholder:text-darkfg text-darkfg'}`}
-                />
-              </div>
-              <div>
-                <label className={`block text-sm font-medium ${mode === "dark" ? 'text-lightgray' :'text-darkufg'}`}>
-                  ZIP Code
-                </label>
-                <input
-                  type="text"
-                  placeholder="Enter ZIP code"
-                  className={`mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 ${mode ==="dark" ? 'bg-darkfg placeholder:text-lightfg text-lightfg' : 'bg-lightbg placeholder:text-darkfg text-darkfg'}`}
-                />
-              </div>
-            </div>
-            <div>
-              <label className="flex items-center">
-                <input
-                  type="checkbox"
-                  className="h-4 w-4 text-emerald-500 focus:ring-emerald-500"
-                />
-                <span className={`ml-2 text-sm text-gray-500 ${mode === "dark" ? 'text-gray-100' :'text-darkufg'}`}>
-                  I have read and agree to the Terms and Conditions.
-                </span>
-              </label>
-            </div>
-          </form>
-        </div>
-
-        {/* Review Your Cart */}
-        <div>
-          <h2 className="text-xl font-semibold mb-4">Review your cart</h2>
-          <div className="space-y-4">
-            <div className="flex justify-between items-center">
-              <span>DuoComfort Sofa Premium</span>
-              <span>$20.00</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span>IronOne Desk</span>
-              <span>$25.00</span>
-            </div>
-          </div>
-          <div className="mt-6">
-            <label className={`block text-sm font-medium ${mode === "dark" ? 'text-lightgray' :'text-darkufg'}`}>
-              Discount code
-            </label>
-            <div className="flex items-center mt-1">
-              <input
-                type="text"
-                placeholder="Enter discount code"
-                className={`flex-grow border border-gray-300 rounded-md shadow-sm py-2 px-3  focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 ${mode ==="dark" ? 'bg-darkfg placeholder:text-lightfg text-lightfg' : 'bg-lightbg placeholder:text-darkfg text-darkfg'}`}
-              />
-              <button className="ml-2 bg-emerald-500 text-white px-4 py-2 rounded-md">
-                Apply
-              </button>
-            </div>
-          </div>
-          <div className="mt-6 space-y-2">
-            <div className="flex justify-between">
-              <span>Subtotal</span>
-              <span>$45.00</span>
-            </div>
-            <div className="flex justify-between">
-              <span>Shipping</span>
-              <span>$5.00</span>
-            </div>
-            <div className="flex justify-between">
-              <span>Discount</span>
-              <span>-$10.00</span>
-            </div>
-            <div className="flex justify-between font-semibold">
-              <span>Total</span>
-              <span>$40.00</span>
-            </div>
-          </div>
-          <button className="w-full mt-6 bg-emerald-500 text-white py-2 rounded-md">
-            Pay Now
+      <div className={`max-w-6xl w-full ${mode === "dark" ? 'bg-darkbg text-lightgray' : 'bg-lightfg text-darkufg'} shadow-lg rounded-lg p-6`}>
+        <h2 className="text-xl font-semibold mb-4">Checkout</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <CardElement
+            className={`p-3 border rounded-md ${mode === "dark" ? 'bg-darkfg text-lightfg' : 'bg-lightbg text-darkfg'}`}
+            options={{
+              style: {
+                base: {
+                  color: mode === "dark" ? "#fff" : "#000",
+                  fontSize: "16px",
+                  "::placeholder": { color: mode === "dark" ? "#aaa" : "#555" },
+                },
+              },
+            }}
+          />
+          <button
+            type="submit"
+            disabled={!stripe || loading}
+            className="w-full bg-emerald-500 text-white py-2 rounded-md"
+          >
+            {loading ? "Processing..." : "Pay Now"}
           </button>
-          <p className="mt-4 text-sm text-center text-gray-500">
-            Secure Checkout - SSL Encrypted
-          </p>
-        </div>
+        </form>
+        {message && <p className="mt-4 text-center">{message}</p>}
       </div>
     </div>
+    </Elements>
   );
 };
 
